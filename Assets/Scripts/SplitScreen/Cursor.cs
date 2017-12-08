@@ -53,6 +53,14 @@ public class Cursor : MonoBehaviour
 
     public Vector3 getWorldPosition()
     {
+        Vector2 screenPos = new Vector2(this.transform.position.x, this.transform.position.y);
+        Ray r = RectTransformUtility.ScreenPointToRay(currentTargetCam, screenPos);
+
+        float rayDistance;
+        if (groundPlane.Raycast(r, out rayDistance))
+        {
+            return r.GetPoint(rayDistance);
+        }
         return Vector3.zero;
     }
 
@@ -90,17 +98,7 @@ public class Cursor : MonoBehaviour
 
     void updateUfoPosition()
     {
-        RectTransform rect = this.GetComponent<RectTransform>();
-        Vector3[] corners = new Vector3[4];
-        rect.GetWorldCorners(corners);
-        Vector3 center = (corners[0] + corners[1] + corners[2] + corners[3]) / 4.0f;
-
-        Vector2 screenPos = new Vector2(this.transform.position.x , this.transform.position.y);
-        Ray r = RectTransformUtility.ScreenPointToRay(currentTargetCam, screenPos);
-
-        float rayDistance;
-        if (groundPlane.Raycast(r, out rayDistance))
-            ufo.position = r.GetPoint(rayDistance);
+        ufo.position = getWorldPosition();
     }
 
     void selectCamera()
