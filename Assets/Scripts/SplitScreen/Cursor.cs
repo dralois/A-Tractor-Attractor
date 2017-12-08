@@ -10,8 +10,6 @@ public class Cursor : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
-    private LayerMask raycastLayerMask;
-    [SerializeField]
     private float ufoHeight;
     [Header("Components")]
     [SerializeField]
@@ -29,13 +27,11 @@ public class Cursor : MonoBehaviour
     private CanvasInformation canvasInfo;
     private Plane groundPlane;
 
+    //Sprite Information for clamped movement
     private float width;
     private float height;
 
     private Camera currentTargetCam;
-
-    private Image imgComp;
-    private Color c;
 
     void Start()
     {
@@ -45,9 +41,6 @@ public class Cursor : MonoBehaviour
         height = objectRectTransform.rect.height;
 
         groundPlane = new Plane(Vector3.up, new Vector3(0, ufoHeight,0));
-
-        imgComp = this.GetComponent<Image>();
-        c = imgComp.color;
     }
 
 
@@ -82,16 +75,6 @@ public class Cursor : MonoBehaviour
         clamp2DPosition();
         selectCamera();
         updateUfoPosition();
-
-        //TEST
-        if (this.getCurrentScreen() == Screen.LEFT)
-        {
-            imgComp.color = c;
-        }
-        else
-        {
-            imgComp.color = new Color(c.r, c.g, c.b, 0.5f);
-        }
     }
 
 
