@@ -24,8 +24,8 @@ public class Movement : MonoBehaviour {
         //-----------------------------------------------
         //Hole Horizontal/Vertikal in int
         //-----------------------------------------------
-        float l_Horizontal = (Input.GetAxisRaw("Horizontal") == 0 ? 0 : Input.GetAxisRaw("Horizontal") > 0 ? 1 : -1) * m_Speed;
-        float l_Vertical = (Input.GetAxisRaw("Vertical") == 0 ? 0 : Input.GetAxisRaw("Vertical") > 0 ? 1 : -1) * m_Speed;
+        float l_Horizontal = (Input.GetAxisRaw("Horizontal_P1") == 0 ? 0 : Input.GetAxisRaw("Horizontal_P1") > 0 ? 1 : -1) * m_Speed;
+        float l_Vertical = (Input.GetAxisRaw("Vertical_P1") == 0 ? 0 : Input.GetAxisRaw("Vertical_P1") > 0 ? 1 : -1) * m_Speed;
         //-----------------------------------------------
         //Falls Bewegung notwendig
         //-----------------------------------------------
