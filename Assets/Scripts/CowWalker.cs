@@ -14,7 +14,7 @@ public class CowWalker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        bool walk = Random.Range(0, 100) < 40;
+        bool walk = Random.Range(0, 100) < 80;
         if (walk)
         {
             this.rigid.AddForce(this.transform.forward * speed);
