@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4865038038582574, guid: 050feae2c1cbd284b8a93722196b0dbd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: -2.4
       objectReference: {fileID: 0}
     - target: {fileID: 4865038038582574, guid: 050feae2c1cbd284b8a93722196b0dbd, type: 2}
       propertyPath: m_LocalPosition.y
@@ -695,6 +695,7 @@ GameObject:
   - component: {fileID: 657742305}
   - component: {fileID: 657742304}
   - component: {fileID: 657742302}
+  - component: {fileID: 657742303}
   m_Layer: 0
   m_Name: Player2Cam
   m_TagString: MainCamera
@@ -718,6 +719,23 @@ MonoBehaviour:
   m_MaxSpeed: 150
   m_MinFOV: 40
   m_MaxFOV: 80
+--- !u!114 &657742303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657742301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fef2782e577d734aa16ffaae622272c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpecificLights:
+  - {fileID: 543295119}
+  - {fileID: 1157717471}
+  showLigtsInLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!20 &657742304
 Camera:
   m_ObjectHideFlags: 0
@@ -1324,7 +1342,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530198910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 328.5, y: 246.5, z: 0}
+  m_LocalPosition: {x: 202.5, y: 163, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 213518587}
@@ -1445,6 +1463,7 @@ GameObject:
   - component: {fileID: 1727251310}
   - component: {fileID: 1727251309}
   - component: {fileID: 1727251307}
+  - component: {fileID: 1727251308}
   m_Layer: 0
   m_Name: Player1Cam
   m_TagString: MainCamera
@@ -1468,6 +1487,23 @@ MonoBehaviour:
   m_MaxSpeed: 150
   m_MinFOV: 40
   m_MaxFOV: 80
+--- !u!114 &1727251308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1727251306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fef2782e577d734aa16ffaae622272c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpecificLights:
+  - {fileID: 543295119}
+  - {fileID: 1157717471}
+  showLigtsInLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!20 &1727251309
 Camera:
   m_ObjectHideFlags: 0
