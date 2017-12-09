@@ -39,7 +39,7 @@ public class VehicleScript : MonoBehaviour {
             {
                 if (ufo.getCurrentScreen() != screen)
                     continue;
-
+              
                 Vector3 ufoAdaptedHeight = new Vector3(ufo.getWorldPosition().x, corners[i].position.y, ufo.getWorldPosition().z);
                 Vector3 cornerToUfo = ufoAdaptedHeight - corners[i].position;
                 Vector3 ufoForce = cornerToUfo.normalized * ((beamStrength / (cornerToUfo.magnitude + 3)) * 3 + 1);
