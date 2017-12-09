@@ -173,7 +173,7 @@ public class UfoController : MonoBehaviour
     /// </summary>
     void updateMoveRestriction()
     {
-        canSwitchSides = !(this.isPulling());
+        canSwitchSides = !(this.isPulling() && this.getCurrentScreen() == playerScreen);
         border.color = new Color(border.color.r, border.color.g, border.color.b, canSwitchSides ?  0.5f : 1.0f);
     }
 
