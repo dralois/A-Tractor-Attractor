@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VehicleScript : MonoBehaviour {
+public class VehicleScript : MonoBehaviour
+{
 
     //public variables
     public float beamStrength = 1.0f;
@@ -24,8 +25,9 @@ public class VehicleScript : MonoBehaviour {
     //private variables
     private Rigidbody rb;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rb = this.gameObject.GetComponent<Rigidbody>();
         rb.maxAngularVelocity = maxAngularVelocity;
 
@@ -35,34 +37,32 @@ public class VehicleScript : MonoBehaviour {
 
     void Update()
     {
-        //Rotiert das objekt in richtung der aktuellen geschwindigkeit 
-        if (rb.velocity.magnitude > 0.5f) 
-        {
-            float rotationSpeed = 2 * Time.deltaTime * rb.velocity.magnitude;
-            if (rotationSpeed > 200 * Time.deltaTime)
-                rotationSpeed = 200 * Time.deltaTime;
 
-            rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rb.velocity), rotationSpeed);
-        }
-        clampRotation();
     }
 	
     void clampRotation()
     {
-        Vector3 euler = this.transform.localEulerAngles;
-        euler.z = Mathf.Clamp(euler.z, -20, 20);
-        euler.x = Mathf.Clamp(euler.x, -10, 10);
-        this.transform.localEulerAngles = euler;
+        Vector3 euler = this.rb.rotation.eulerAngles;
+        euler.z = 0;
+        euler.x = 0;
+        rb.rotation = Quaternion.Euler(euler);
     }
+    // Update is called once per frame    
+    void FixedUpdate()
+    {
+        if (CountDown.CountdownActive)
+            { return; }
 
-	// Update is called once per frame
-	void FixedUpdate () {
+
+
+
+
         //calculate forces on corners and apply it to the rigidbody
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
-            Vector3 force = new Vector3(0,0,0);
+            Vector3 force = new Vector3(0, 0, 0);
             bool applyForce = false;
-            foreach(UfoController ufo in ufos)
+            foreach (UfoController ufo in ufos)
             {
                 if (ufo.getCurrentScreen() != screen)
                     continue;
@@ -77,14 +77,15 @@ public class VehicleScript : MonoBehaviour {
                 Vector3 cornerToUfo = ufoAdaptedHeight - corners[i].position;
                 Vector3 ufoForce;
 
+                //cornerToUfo.Normalize();
                 ufoForce = cornerToUfo.normalized * beamStrength;
-                Debug.Log(cornerToUfo.normalized);
+                //Debug.Log(cornerToUfo);
 
                 force += ufoForce;
             }
 
             //apply force on rigidbody
-            if(applyForce)
+            if (applyForce)
                 rb.AddForceAtPosition(force, corners[i].position);
         }
 
@@ -97,8 +98,19 @@ public class VehicleScript : MonoBehaviour {
         if (rb.position.y > maxHeight)
         {
             rb.transform.Translate(new Vector3(0, maxHeight - rb.position.y, 0));
-            if(rb.velocity.y  > 0)
+            if (rb.velocity.y > 0)
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        }
+
+
+                //Rotiert das objekt in richtung der aktuellen geschwindigkeit 
+        clampRotation();
+        if (rb.velocity.magnitude > 0.5f)
+        {
+            float rotationSpeed = 2 * Time.deltaTime * rb.velocity.magnitude;
+            if (rotationSpeed > 200 * Time.deltaTime)
+                rotationSpeed = 200 * Time.deltaTime;
+            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(rb.velocity, Vector3.up), rotationSpeed);
         }
     }
 
