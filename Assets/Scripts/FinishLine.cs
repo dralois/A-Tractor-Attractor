@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class FinishLine : MonoBehaviour {
 
@@ -6,7 +7,13 @@ public class FinishLine : MonoBehaviour {
     [SerializeField]
     private Transform PlayerOne;
     [SerializeField]
+    private string PlayerOneName;
+    [SerializeField]
     private Transform PlayerTwo;
+    [SerializeField]
+    private string PlayerTwoName;
+    [SerializeField]
+    private Text Winner;
 
     private void Start()
     {
@@ -17,11 +24,11 @@ public class FinishLine : MonoBehaviour {
     {
         if(other.name == PlayerOne.name)
         {
-            Debug.Log("Player One wins!");
+            Winner.text = PlayerOneName.ToUpper() + " WINS!";
         }
         else if(other.name == PlayerTwo.name)
         {
-            Debug.Log("Player Two wins!");
+            Winner.text = PlayerTwoName.ToUpper() + " WINS!";
         }
     }
 }
