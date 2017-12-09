@@ -14,6 +14,7 @@ public class VehicleScript : MonoBehaviour
     public Material[] mats;
     public UfoController[] ufos;
     public Transform[] corners;
+    public float autoSpeed;
 
     public float maxHeight = 2.0f;
 
@@ -27,7 +28,9 @@ public class VehicleScript : MonoBehaviour
     //private variables
     private Rigidbody rb;
     public bool Dead { get; private set; }
-    
+
+    public VehicleAutoMove vehicleAutoMove;
+
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody>();
@@ -49,6 +52,8 @@ public class VehicleScript : MonoBehaviour
         if (CountDown.CountdownActive || Dead)
             { return; }
 
+        bool ufoIsPulling = false;
+
         //calculate forces on corners and apply it to the rigidbody
         for (int i = 0; i < 4; i++)
         {
@@ -61,6 +66,8 @@ public class VehicleScript : MonoBehaviour
 
                 if (!ufo.isPulling())
                     continue;
+
+                ufoIsPulling = true;
 
                 //Debug.Log("inside");
                 applyForce = true;
@@ -80,6 +87,16 @@ public class VehicleScript : MonoBehaviour
             if (applyForce)
                 rb.AddForceAtPosition(force, corners[i].position);
         }
+
+        if (ufoIsPulling == false)
+        {
+            var target = vehicleAutoMove.GetCurrentCheckpoint();
+            if (target != null)
+            {
+                rb.MovePosition(rb.position + (new Vector3(target.position.x, rb.position.y, target.position.z) - rb.position).normalized * Time.fixedDeltaTime * autoSpeed);
+            }
+        }
+
 
         //damp sideways velocity
         var locVel = transform.InverseTransformDirection(rb.velocity);
