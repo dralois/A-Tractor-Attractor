@@ -6,7 +6,7 @@ public class BeamController : MonoBehaviour {
     private LineRenderer lr;
 
     [SerializeField]
-    private Cursor playerCursor;
+    private UfoController playerCursor;
     [SerializeField]
     private Transform ufo;
     [SerializeField]

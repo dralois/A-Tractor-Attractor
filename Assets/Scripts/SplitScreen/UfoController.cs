@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Cursor : MonoBehaviour
+public class UfoController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField]
     private int playerIndex;
+    [SerializeField]
+    private Screen playerScreen;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -23,6 +25,8 @@ public class Cursor : MonoBehaviour
     private Transform ufo;
     [SerializeField]
     private BeamController beam;
+    [SerializeField]
+    private Image border;
     [Header("Requirements")]
     [SerializeField]
     private string layerPlayer1= "Ufo_Player_1";
@@ -36,6 +40,7 @@ public class Cursor : MonoBehaviour
     //--------------------------------------
     private float width;
     private float height;
+    private bool canSwitchSides;
     //--------------------------------------
     //Aktuelle Kamera
     //--------------------------------------
@@ -121,6 +126,7 @@ public class Cursor : MonoBehaviour
 
     private void FixedUpdate()
     {
+        updateMoveRestriction();
         update2DPosition();
         clamp2DPosition();
         selectCamera();
@@ -163,6 +169,15 @@ public class Cursor : MonoBehaviour
     }
 
     /// <summary>
+    /// Bestimmt ob das Ufo die Seite wechseln kann oder nicht und updated die UI
+    /// </summary>
+    void updateMoveRestriction()
+    {
+        canSwitchSides = !(this.isPulling() && this.getCurrentScreen() == playerScreen);
+        border.color = new Color(border.color.r, border.color.g, border.color.b, canSwitchSides ?  0.5f : 1.0f);
+    }
+
+    /// <summary>
     /// Aktualisiert GUI (2D)
     /// </summary>
     void update2DPosition()
@@ -195,8 +210,17 @@ public class Cursor : MonoBehaviour
     void clamp2DPosition()
     {
         Vector3 clampdPos = this.transform.position;
-        clampdPos.x = Mathf.Clamp(clampdPos.x, 0 + this.width / 2.0f, canvasInfo.CanvasWidth - this.width / 2.0f);
-        clampdPos.y = Mathf.Clamp(clampdPos.y, 0 + this.height / 2.0f, canvasInfo.CanvasHeight- this.height / 2.0f);
+        clampdPos.y = Mathf.Clamp(clampdPos.y, 0 + this.height / 2.0f, canvasInfo.CanvasHeight - this.height / 2.0f);
+        if (!canSwitchSides)
+        {
+            float minX = playerScreen == Screen.LEFT ? (0 + this.width / 2.0f) : (canvasInfo.CanvasWidth / 2.0f + this.width / 2.0f);
+            float maxX = playerScreen == Screen.LEFT ? (canvasInfo.CanvasWidth / 2.0f - this.width / 2.0f) : (canvasInfo.CanvasWidth - this.width / 2.0f);
+            clampdPos.x = Mathf.Clamp(clampdPos.x, minX, maxX);
+        }
+        else
+        {
+            clampdPos.x = Mathf.Clamp(clampdPos.x, 0 + this.width / 2.0f, canvasInfo.CanvasWidth - this.width / 2.0f);
+        }
         this.transform.position = clampdPos;
     }
 }
