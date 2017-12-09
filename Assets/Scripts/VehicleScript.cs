@@ -41,6 +41,10 @@ public class VehicleScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        if (CountDown.CountdownActive)
+        {
+            return;
+        }
         //calculate forces on corners and apply it to the rigidbody
         for(int i = 0; i < 4; i++)
         {

@@ -12,6 +12,8 @@ public class CountDown : MonoBehaviour
     private float refTime;
     private float alpha;
 
+    public static bool CountdownActive = false;
+
     void Start()
     {
         Reset();
@@ -29,7 +31,8 @@ public class CountDown : MonoBehaviour
                 textObject.fontSize = 80;
                 textObject.text = "GO!";
                 StartCoroutine(evade());
-                // TODO Start the race
+                // Start the race
+                CountdownActive = false;
             }
             else
             {
@@ -48,6 +51,7 @@ public class CountDown : MonoBehaviour
         counter = 3;
         refTime = 0;
         textObject.text = "" + counter;
+        CountdownActive = true;
     }
 
     private IEnumerator evade()
