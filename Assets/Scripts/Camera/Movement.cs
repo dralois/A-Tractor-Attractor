@@ -6,7 +6,9 @@ public class Movement : MonoBehaviour {
     //Rigidbody des Objekts und Geschwindigkeit
     //-----------------------------------------------
     private Rigidbody m_Rigidbody;
-    public float m_Speed;
+    [Header("Settings")]
+    [SerializeField]
+    private float m_Speed;
 
     private void Start()
     {

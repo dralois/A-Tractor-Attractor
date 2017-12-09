@@ -5,6 +5,7 @@ public class CameraFollow : MonoBehaviour {
     //-----------------------------------------------
     //Kamera Target
     //-----------------------------------------------
+    [Header("Camera Target")]
     [SerializeField]
     private Transform m_Target;
     //-----------------------------------------------
@@ -15,10 +16,15 @@ public class CameraFollow : MonoBehaviour {
     //-----------------------------------------------
     //Einstellungen
     //-----------------------------------------------
-    public float m_SmoothSpeed;
-    public float m_MaxSpeed;
-    public float m_MinFOV;
-    public float m_MaxFOV;
+    [Header("Settings")]
+    [SerializeField]
+    private float m_SmoothSpeed;
+    [SerializeField]
+    private float m_MaxSpeed;
+    [SerializeField]
+    private float m_MinFOV;
+    [SerializeField]
+    private float m_MaxFOV;
 
     private void Start()
     {
