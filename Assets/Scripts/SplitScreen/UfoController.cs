@@ -24,6 +24,8 @@ public class UfoController : MonoBehaviour
     [SerializeField]
     private Transform ufo;
     [SerializeField]
+    private Transform ufoContainer;
+    [SerializeField]
     private BeamController beam;
     [SerializeField]
     private Image border;
@@ -70,8 +72,8 @@ public class UfoController : MonoBehaviour
 
         selectCamera();
 
-        FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
-        FrustrumScale = ufo.localScale;
+        //FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        //FrustrumScale = ufo.localScale;
 
         mashCounter = 0;
         mashesPerSecond = 0;
@@ -162,7 +164,7 @@ public class UfoController : MonoBehaviour
     /// </summary>
     void updateUfoPosition()
     {
-        ufo.position = getWorldPosition();
+        ufoContainer.position = getWorldPosition();
     }
 
     /// <summary>
@@ -213,9 +215,9 @@ public class UfoController : MonoBehaviour
         //--------------------------------------
         //Ufo Rotation
         //--------------------------------------
-        ufo.transform.rotation = Quaternion.Slerp(ufo.transform.rotation,
-                                                  Quaternion.Euler(maxRotation * y, 0 , -maxRotation * x),
-                                                  rotationSpeed * Time.deltaTime);
+        ufoContainer.transform.rotation = Quaternion.Slerp(ufoContainer.transform.rotation,
+                                                           Quaternion.Euler(maxRotation * y , 0, -maxRotation * x),
+                                                           rotationSpeed * Time.deltaTime);
         //--------------------------------------
         //Translate
         //--------------------------------------
