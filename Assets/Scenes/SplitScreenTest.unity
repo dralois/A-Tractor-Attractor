@@ -185,12 +185,17 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 7cf827c5e5f36c742bb2f1344c36fbe8, type: 2}
+      objectReference: {fileID: 2100000, guid: 8828351ae7b7e7045b759e44d3823f4d, type: 2}
     - target: {fileID: 23477793774296414, guid: 050feae2c1cbd284b8a93722196b0dbd,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7cf827c5e5f36c742bb2f1344c36fbe8, type: 2}
+      objectReference: {fileID: 2100000, guid: c4c9ab2d0ca562147bf4fbc3e9a7e1da, type: 2}
+    - target: {fileID: 23477793774296414, guid: 050feae2c1cbd284b8a93722196b0dbd,
+        type: 2}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0990fe6288195fe4a9467c6f15f3ac1b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 050feae2c1cbd284b8a93722196b0dbd, type: 2}
   m_IsPrefabParent: 0
@@ -698,12 +703,17 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: e5df86744de09e34cb7506f91e857977, type: 2}
+      objectReference: {fileID: 2100000, guid: 8828351ae7b7e7045b759e44d3823f4d, type: 2}
     - target: {fileID: 23477793774296414, guid: 050feae2c1cbd284b8a93722196b0dbd,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e5df86744de09e34cb7506f91e857977, type: 2}
+      objectReference: {fileID: 2100000, guid: d72d3cf1b8062ec4699a1094571ebf1a, type: 2}
+    - target: {fileID: 23477793774296414, guid: 050feae2c1cbd284b8a93722196b0dbd,
+        type: 2}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0990fe6288195fe4a9467c6f15f3ac1b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 050feae2c1cbd284b8a93722196b0dbd, type: 2}
   m_IsPrefabParent: 0
