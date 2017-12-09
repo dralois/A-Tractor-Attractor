@@ -8,6 +8,11 @@ public class FinishLine : MonoBehaviour {
     [SerializeField]
     private Transform PlayerTwo;
 
+    private void Start()
+    {
+        gameObject.GetComponent<MeshRenderer>().material.mainTextureScale =  new Vector2(transform.localScale.x, transform.localScale.z);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == PlayerOne.name)
