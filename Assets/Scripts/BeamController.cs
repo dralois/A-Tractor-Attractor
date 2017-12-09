@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 
 public class BeamController : MonoBehaviour {
-
+    //--------------------------------------
+    //Renderer
+    //--------------------------------------
     private LineRenderer lr;
-
+    //--------------------------------------
+    //Targets
+    //--------------------------------------
     [SerializeField]
     private UfoController playerCursor;
     [SerializeField]
@@ -13,16 +17,19 @@ public class BeamController : MonoBehaviour {
     [SerializeField]
     private Transform vehicle2;
 
-    // Use this for initialization
     void Start () {
+        //--------------------------------------
+        //Hole Renderer
+        //--------------------------------------
         this.lr = this.GetComponent<LineRenderer>();
         this.lr.positionCount = 12;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-        this.lr.SetPosition(11, ufo.position);        
-
+        this.lr.SetPosition(11, ufo.position);
+        //--------------------------------------
+        //Update Positionen
+        //--------------------------------------
         if (playerCursor.getCurrentScreen() == Screen.LEFT)
         {
             for(int i = 0; i < 10; i++)
@@ -41,7 +48,9 @@ public class BeamController : MonoBehaviour {
             this.lr.SetPosition(0, vehicle2.position);
             this.transform.LookAt(vehicle2);
         }
-
+        //--------------------------------------
+        //Wave-Effekt
+        //--------------------------------------
         if (playerCursor.isPulling())
         {
             Gradient l_Next = lr.colorGradient;

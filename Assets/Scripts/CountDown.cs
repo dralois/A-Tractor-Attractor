@@ -19,8 +19,7 @@ public class CountDown : MonoBehaviour
     }
 
     void Update()
-    {
-       
+    {       
         if (counter > 0 && refTime >= 1.0f)
         {
             refTime = 0;

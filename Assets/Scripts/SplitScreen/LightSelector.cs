@@ -6,13 +6,16 @@ public class LightSelector : MonoBehaviour {
     [SerializeField]
     List<Light> playerSpecificLights;
     [SerializeField]
-    LayerMask showLigtsInLayer;
+    LayerMask showLightsInLayer;
 
     void OnPreCull()
     {
+        //--------------------------------------
+        //Aktiviere Lichter
+        //--------------------------------------
         foreach (Light light in playerSpecificLights)
         {
-            if (showLigtsInLayer == (showLigtsInLayer | (1 << light.gameObject.layer)))
+            if (showLightsInLayer == (showLightsInLayer | (1 << light.gameObject.layer)))
             {
                 light.enabled = true;
             }
@@ -21,6 +24,9 @@ public class LightSelector : MonoBehaviour {
 
     void OnPostRender()
     {
+        //--------------------------------------
+        //Deaktiviere Lichter
+        //--------------------------------------
         foreach (Light light in playerSpecificLights)
         {
             light.enabled = false;

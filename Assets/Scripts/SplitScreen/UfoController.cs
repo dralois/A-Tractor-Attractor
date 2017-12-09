@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class UfoController : MonoBehaviour
 {
+    //--------------------------------------
+    //Sonstiges
+    //--------------------------------------
     [Header("Settings")]
     [SerializeField]
     private int playerIndex;
@@ -47,10 +50,14 @@ public class UfoController : MonoBehaviour
     //Aktuelle Kamera
     //--------------------------------------
     private Camera currentTargetCam;
-
+    //--------------------------------------
+    //Frustum
+    //--------------------------------------
     private float FrustrumHeight;
     private Vector3 FrustrumScale;
-
+    //--------------------------------------
+    //MPS
+    //--------------------------------------
     private int mashesPerSecond;
     private int mashCounter;
     private float mashInterval;
@@ -69,12 +76,18 @@ public class UfoController : MonoBehaviour
         //Erstelle Ebene für 3D-Positionsbestimmung
         //-----------------------------------------
         groundPlane = new Plane(Vector3.up, new Vector3(0, ufoHeight,0));
-
+        //--------------------------------------
+        //Bestimme Kamera
+        //--------------------------------------
         selectCamera();
-
+        //--------------------------------------
+        //Bestimme Frustum
+        //--------------------------------------
         FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
         FrustrumScale = ufo.localScale * 2.0f;
-
+        //--------------------------------------
+        //Initialisiere Variablen
+        //--------------------------------------
         mashCounter = 0;
         mashesPerSecond = 0;
         mashInterval = 1.0f;
@@ -85,7 +98,6 @@ public class UfoController : MonoBehaviour
     /// <summary>
     /// Gibt an ob der Traktorstrahl grade aktiv ist
     /// </summary>
-    /// <returns></returns>
     public bool isPulling()
     {
         return (Input.GetAxis("Fire_P" + playerIndex) > 0);
@@ -130,6 +142,9 @@ public class UfoController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Mashes pro Sekunde
+    /// </summary>
     public int getMashesPerSecond()
     {
         return mashesPerSecond;
@@ -145,16 +160,19 @@ public class UfoController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        selectCamera();
         updateMoveRestriction();
         update2DPosition();
         clamp2DPosition();
-        selectCamera();
         updateUfoPosition();
         updateMash();
     }
 
     private void Update()
     {
+        //--------------------------------------
+        //Passe Scale an
+        //--------------------------------------
         float newScale = (2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad));
         ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
     }
@@ -245,28 +263,33 @@ public class UfoController : MonoBehaviour
     }
 
     /// <summary>
-    /// berechne MashperSecond
+    /// Berechne MashPerSecond
     /// </summary>
     void updateMash()
     {
+        //--------------------------------------
+        //Update Mashes
+        //--------------------------------------
         if (Input.GetAxis("Fire_P" + playerIndex) > 0 && !firePressed)
         {
             mashCounter++;
-            //Debug.Log("pressed");
             firePressed = true;
         }
         else if (Input.GetAxis("Fire_P" + playerIndex) == 0)
         {
             firePressed = false;
         }
-
+        //--------------------------------------
+        //Delta
+        //--------------------------------------
         lastMashUpdate += Time.deltaTime;
-
+        //--------------------------------------
+        //Update MPS
+        //--------------------------------------
         if (lastMashUpdate > mashInterval)
         {
             float mashes = mashCounter;
             mashesPerSecond = (int)(mashes / mashInterval);
-            //Debug.Log("MPS: " + mashes / mashInterval + "; Mashes: " + mashCounter);
             lastMashUpdate = 0;
             mashCounter = 0;
         }

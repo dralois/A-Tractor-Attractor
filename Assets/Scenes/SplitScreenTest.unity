@@ -413,7 +413,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 213518586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107, y: 0, z: 0}
+  m_LocalPosition: {x: -185, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1530198914}
@@ -693,7 +693,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 348192734}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 107, y: 0, z: 0}
+  m_LocalPosition: {x: 185, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1530198914}
@@ -1058,12 +1058,12 @@ Prefab:
     - target: {fileID: 224388917735819550, guid: 64bb0c1a86406954b94b2632f7a8ddf7,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 207.62822
+      value: 363.62823
       objectReference: {fileID: 0}
     - target: {fileID: 224388917735819550, guid: 64bb0c1a86406954b94b2632f7a8ddf7,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 154.8
+      value: 203.3
       objectReference: {fileID: 0}
     - target: {fileID: 224388917735819550, guid: 64bb0c1a86406954b94b2632f7a8ddf7,
         type: 2}
@@ -1240,9 +1240,9 @@ MonoBehaviour:
   playerSpecificLights:
   - {fileID: 150668315}
   - {fileID: 2075520489}
-  showLigtsInLayer:
+  showLightsInLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
 --- !u!20 &657742304
 Camera:
   m_ObjectHideFlags: 0
@@ -1261,7 +1261,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1783,7 +1783,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530198910}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 207.62822, y: 154.8, z: -106.43234}
+  m_LocalPosition: {x: 363.62823, y: 203.3, z: -106.43234}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 213518587}
@@ -1961,9 +1961,9 @@ MonoBehaviour:
   playerSpecificLights:
   - {fileID: 150668315}
   - {fileID: 2075520489}
-  showLigtsInLayer:
+  showLightsInLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!20 &1727251309
 Camera:
   m_ObjectHideFlags: 0
