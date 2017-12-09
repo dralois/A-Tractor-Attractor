@@ -231,10 +231,6 @@ public class UfoController : MonoBehaviour
         clampdPos.y = Mathf.Clamp(clampdPos.y, 0 + this.height / 2.0f, canvasInfo.CanvasHeight - this.height / 2.0f);
         if (!canSwitchSides)
         {
-<<<<<<< HEAD
-            //Debug.Log("OTHER CLAMP");
-=======
->>>>>>> 44beb21d32fbab43e4f5760719ba360a322f1a27
             float minX = playerScreen == Screen.LEFT ? (0 + this.width / 2.0f) : (canvasInfo.CanvasWidth / 2.0f + this.width / 2.0f);
             float maxX = playerScreen == Screen.LEFT ? (canvasInfo.CanvasWidth / 2.0f - this.width / 2.0f) : (canvasInfo.CanvasWidth - this.width / 2.0f);
             clampdPos.x = Mathf.Clamp(clampdPos.x, minX, maxX);
