@@ -36,13 +36,11 @@ public class FinishLine : MonoBehaviour {
         finished = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if (finished)
-            return;
-        if(other.name == PlayerOne.name)
+        if (other.name == PlayerOne.name)
         {
-            if (other.GetComponent<Rigidbody>().position.x < this.transform.position.x)
+            if (other.GetComponent<Rigidbody>().position.x > this.transform.position.x)
             {
                 if (p1RoundCounter == 3 && !finished)
                 {
@@ -55,17 +53,12 @@ public class FinishLine : MonoBehaviour {
                     p1RoundCounter++;
                 }
             }
-            else
-            {
-                p1RoundCounter--;
-            }
 
             p1TurnGui.text = p1RoundCounter + "/3";
         }
-
-        else if(other.name == PlayerTwo.name)
+        else if (other.name == PlayerTwo.name)
         {
-            if (other.GetComponent<Rigidbody>().position.x < this.transform.position.x)
+            if (other.GetComponent<Rigidbody>().position.x > this.transform.position.x)
             {
                 if (p2RoundCounter == 3 && !finished)
                 {
@@ -78,7 +71,27 @@ public class FinishLine : MonoBehaviour {
                     p2RoundCounter++;
                 }
             }
-            else
+            p2TurnGui.text = p2RoundCounter + "/3";
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (finished)
+            return;
+        if(other.name == PlayerOne.name)
+        {
+            if (other.GetComponent<Rigidbody>().position.x > this.transform.position.x)            
+            {
+                p1RoundCounter--;
+            }
+
+            p1TurnGui.text = p1RoundCounter + "/3";
+        }
+
+        else if(other.name == PlayerTwo.name)
+        {
+            if (other.GetComponent<Rigidbody>().position.x > this.transform.position.x)
             {
                 p2RoundCounter--;
             }
