@@ -26,7 +26,11 @@ public class VehicleScript : MonoBehaviour {
 
     void Update()
     {
-        rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rb.velocity), 200*Time.deltaTime);
+        //Rotiert das objekt in richtung der aktuellen geschwindigkeit 
+        if (rb.velocity.magnitude > 0.5f) 
+        {
+            rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rb.velocity), 200 * Time.deltaTime);
+        }
     }
 	
 	// Update is called once per frame
@@ -34,12 +38,19 @@ public class VehicleScript : MonoBehaviour {
         //calculate forces on corners and apply it to the rigidbody
         for(int i = 0; i < 4; i++)
         {
-            Vector3 force = new Vector3();
+            Vector3 force = new Vector3(0,0,0);
+            bool applyForce = false;
             foreach(Cursor ufo in ufos)
             {
                 if (ufo.getCurrentScreen() != screen)
                     continue;
-              
+
+                if (!ufo.isPulling())
+                    continue;
+
+                Debug.Log("inside");
+                applyForce = true;
+
                 Vector3 ufoAdaptedHeight = new Vector3(ufo.getWorldPosition().x, corners[i].position.y, ufo.getWorldPosition().z);
                 Vector3 cornerToUfo = ufoAdaptedHeight - corners[i].position;
                 Vector3 ufoForce = cornerToUfo.normalized * ((beamStrength / (cornerToUfo.magnitude + 3)) * 3 + 1);
@@ -50,7 +61,8 @@ public class VehicleScript : MonoBehaviour {
             }
 
             //apply force on rigidbody
-            rb.AddForceAtPosition(force, corners[i].position);
+            if(applyForce)
+                rb.AddForceAtPosition(force, corners[i].position);
         }
 
         //damp sideways velocity

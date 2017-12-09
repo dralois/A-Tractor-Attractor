@@ -21,6 +21,8 @@ public class Cursor : MonoBehaviour
     private Camera playerCam2;
     [SerializeField]
     private Transform ufo;
+    [SerializeField]
+    private BeamController beam;
     [Header("Requirements")]
     [SerializeField]
     private string layerPlayer1= "Ufo_Player_1";
@@ -59,6 +61,15 @@ public class Cursor : MonoBehaviour
 
         FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
         FrustrumScale = ufo.localScale;
+    }
+
+    /// <summary>
+    /// Gibt an ob der Traktorstrahl grade aktiv ist
+    /// </summary>
+    /// <returns></returns>
+    public bool isPulling()
+    {
+        return (Input.GetAxis("Fire_P" + playerIndex) > 0);
     }
 
     /// <summary>
@@ -138,12 +149,16 @@ public class Cursor : MonoBehaviour
         if (this.getCurrentScreen() == Screen.LEFT)
         {
             currentTargetCam = playerCam1;
-            ufo.gameObject.layer = LayerMask.NameToLayer(layerPlayer1);
+            int layer = LayerMask.NameToLayer(layerPlayer1);
+            ufo.gameObject.layer = layer;
+            beam.gameObject.layer = layer;
         }
         else
         {
             currentTargetCam = playerCam2;
-            ufo.gameObject.layer = LayerMask.NameToLayer(layerPlayer2);
+            int layer = LayerMask.NameToLayer(layerPlayer2);
+            ufo.gameObject.layer = layer;
+            beam.gameObject.layer = layer;
         }
     }
 

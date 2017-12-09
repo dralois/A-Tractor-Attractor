@@ -48,7 +48,6 @@ public class CameraFollow : MonoBehaviour {
         //Bestimme Wert zw. 0-1 basierend auf Velocity
         //-----------------------------------------------
         float l_LerpVal = Mathf.Min(m_TargetRB.velocity.magnitude / m_MaxSpeed, 1);
-        Debug.Log(m_TargetRB.velocity.magnitude);
         //-----------------------------------------------
         //Passe Kamera FOV an
         //-----------------------------------------------
