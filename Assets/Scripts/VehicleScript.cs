@@ -17,6 +17,8 @@ public class VehicleScript : MonoBehaviour {
     public int playerIndex;
     public Screen screen;
 
+    private Vector3 resetPoint;
+
     //private variables
     private Rigidbody rb;
 
@@ -24,6 +26,8 @@ public class VehicleScript : MonoBehaviour {
 	void Start () {
         rb = this.gameObject.GetComponent<Rigidbody>();
         rb.maxAngularVelocity = maxAngularVelocity;
+
+        resetPoint = rb.position;
     }
 
     void Update()
@@ -35,7 +39,7 @@ public class VehicleScript : MonoBehaviour {
             if (rotationSpeed > 200 * Time.deltaTime)
                 rotationSpeed = 200 * Time.deltaTime;
 
-            rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rb.velocity), rotationSpeed);
+            rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(new Vector3(rb.velocity.x, 0, rb.velocity.z)), rotationSpeed);
         }
     }
 	
@@ -83,9 +87,19 @@ public class VehicleScript : MonoBehaviour {
         //clamp y coordinate
         if (rb.position.y > maxHeight)
         {
-            //rb.position.Set(rb.position.x, 1, rb.position.z);
             rb.transform.Translate(new Vector3(0, maxHeight - rb.position.y, 0));
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            if(rb.velocity.y  > 0)
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
+    }
+
+    public void setResetPoint(Vector3 pos)
+    {
+        resetPoint = pos;
+    }
+
+    public void onDeath()
+    {
+        rb.position = resetPoint;
     }
 }
