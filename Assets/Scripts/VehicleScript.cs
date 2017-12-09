@@ -20,9 +20,7 @@ public class VehicleScript : MonoBehaviour {
     private Vector3 resetPoint;
 
     private Vector3 previousVelocity;
-
-    public float deltaVLimit;
-
+    
     //private variables
     private Rigidbody rb;
 
@@ -33,7 +31,6 @@ public class VehicleScript : MonoBehaviour {
 
         resetPoint = rb.position;
         previousVelocity = rb.velocity;
-        deltaVLimit = 10.0f;
     }
 
     void Update()
@@ -45,10 +42,19 @@ public class VehicleScript : MonoBehaviour {
             if (rotationSpeed > 200 * Time.deltaTime)
                 rotationSpeed = 200 * Time.deltaTime;
 
-            rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(new Vector3(rb.velocity.x, 0, rb.velocity.z)), rotationSpeed);
+            rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rb.velocity), rotationSpeed);
         }
+        clampRotation();
     }
 	
+    void clampRotation()
+    {
+        Vector3 euler = this.transform.localEulerAngles;
+        euler.z = Mathf.Clamp(euler.z, -20, 20);
+        euler.x = Mathf.Clamp(euler.x, -10, 10);
+        this.transform.localEulerAngles = euler;
+    }
+
 	// Update is called once per frame
 	void FixedUpdate () {
         //calculate forces on corners and apply it to the rigidbody
@@ -94,12 +100,6 @@ public class VehicleScript : MonoBehaviour {
             if(rb.velocity.y  > 0)
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
-
-        //clamp velocity
-        if(rb.velocity.magnitude - previousVelocity.magnitude < deltaVLimit)
-            rb.velocity = previousVelocity;
-        else
-            previousVelocity = rb.velocity;
     }
 
     public void setResetPoint(Vector3 pos)
