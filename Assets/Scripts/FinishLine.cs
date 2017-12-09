@@ -42,7 +42,7 @@ public class FinishLine : MonoBehaviour {
             return;
         if(other.name == PlayerOne.name)
         {
-            if (other.GetComponent<Rigidbody>().position.z < this.transform.position.z)
+            if (other.GetComponent<Rigidbody>().position.x < this.transform.position.x)
             {
                 if (p1RoundCounter == 3 && !finished)
                 {
@@ -65,7 +65,7 @@ public class FinishLine : MonoBehaviour {
 
         else if(other.name == PlayerTwo.name)
         {
-            if (other.GetComponent<Rigidbody>().position.z < this.transform.position.z)
+            if (other.GetComponent<Rigidbody>().position.x < this.transform.position.x)
             {
                 if (p2RoundCounter == 3 && !finished)
                 {
