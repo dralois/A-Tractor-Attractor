@@ -10,6 +10,8 @@ public class VehicleScript : MonoBehaviour
     public float sidewaysDamping = 0.5f;
     public float enemyBeamScaling = 1.0f;
     public float maxAngularVelocity = 1.0f;
+    public float respawnTime = 2.0f;
+    public Material[] mats;
     public UfoController[] ufos;
     public Transform[] corners;
 
@@ -21,9 +23,10 @@ public class VehicleScript : MonoBehaviour
     private Vector3 resetPoint;
 
     private Vector3 previousVelocity;
-    
+
     //private variables
     private Rigidbody rb;
+    public bool Dead { get; private set; }
     
     void Start()
     {
@@ -43,7 +46,7 @@ public class VehicleScript : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (CountDown.CountdownActive)
+        if (CountDown.CountdownActive || Dead)
             { return; }
 
         //calculate forces on corners and apply it to the rigidbody
@@ -111,5 +114,30 @@ public class VehicleScript : MonoBehaviour
     public void onDeath()
     {
         rb.position = resetPoint;
+        rb.velocity = Vector3.zero;
+        Dead = true;
+        StartCoroutine(respawnTimer());
+    }
+
+    private IEnumerator respawnTimer()
+    {
+        List<float> metallInformatin = new List<float>();
+        foreach (Material m in mats)
+        {
+            metallInformatin.Add(m.GetFloat("_Metallic"));
+            m.color = new Color(m.color.r, m.color.g, m.color.b, 0.5f);
+            m.SetFloat("_Metallic", 0);
+        }
+
+        yield return new WaitForSeconds(respawnTime);
+        Dead = false;
+
+        int i = 0;
+        foreach (Material m in mats)
+        {
+            m.color = new Color(m.color.r, m.color.g, m.color.b, 1.0f);
+            m.SetFloat("_Metallic", metallInformatin[i]);
+            i++;
+        }
     }
 }
