@@ -92,6 +92,14 @@ public class Cursor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Player Index
+    /// </summary>
+    public int getPlayerIndex()
+    {
+        return playerIndex;
+    }
+
     void Update()
     {
         update2DPosition();

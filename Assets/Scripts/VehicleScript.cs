@@ -12,6 +12,7 @@ public class VehicleScript : MonoBehaviour {
     public Cursor[] ufos;
     public Transform[] corners;
 
+    public int playerIndex;
     public Screen screen;
 
     //private variables
@@ -21,6 +22,11 @@ public class VehicleScript : MonoBehaviour {
 	void Start () {
         rb = this.gameObject.GetComponent<Rigidbody>();
         rb.maxAngularVelocity = maxAngularVelocity;
+    }
+
+    void Update()
+    {
+        rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rb.velocity), 200*Time.deltaTime);
     }
 	
 	// Update is called once per frame
@@ -34,13 +40,16 @@ public class VehicleScript : MonoBehaviour {
                 if (ufo.getCurrentScreen() != screen)
                     continue;
 
-                Debug.Log(ufo.getWorldPosition());
                 Vector3 ufoAdaptedHeight = new Vector3(ufo.getWorldPosition().x, corners[i].position.y, ufo.getWorldPosition().z);
                 Vector3 cornerToUfo = ufoAdaptedHeight - corners[i].position;
-                force += cornerToUfo.normalized * beamStrength;//(beamStrength / cornerToUfo.magnitude);
-            }
-            //apply force on rigidbody
+                Vector3 ufoForce = cornerToUfo.normalized * ((beamStrength / (cornerToUfo.magnitude + 3)) * 3 + 1);
+                if (ufo.getPlayerIndex() != playerIndex)
+                    ufoForce *= enemyBeamScaling;
 
+                force += ufoForce;
+            }
+
+            //apply force on rigidbody
             rb.AddForceAtPosition(force, corners[i].position);
         }
 
