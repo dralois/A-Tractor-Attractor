@@ -89,7 +89,7 @@ public class UfoController : MonoBehaviour
         //Bestimme Frustum
         //--------------------------------------
         FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
-        FrustrumScale = ufo.localScale * 2.0f;
+        FrustrumScale = ufo.localScale * 5.0f;
         //--------------------------------------
         //Initialisiere Variablen
         //--------------------------------------
@@ -182,7 +182,7 @@ public class UfoController : MonoBehaviour
     private void Update()
     {
         float newScale = (2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad));
-        ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
+        //ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
         if (isPulling())
         {
             if (!wasPulling)
