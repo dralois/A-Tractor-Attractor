@@ -88,13 +88,11 @@ public class VehicleScript : MonoBehaviour
                 rb.AddForceAtPosition(force, corners[i].position);
         }
 
-        if (ufoIsPulling == false)
+        var target = vehicleAutoMove.GetCurrentCheckpoint();
+
+        if (ufoIsPulling == false && target != null && rb.velocity.magnitude < autoSpeed * 1.5f)
         {
-            var target = vehicleAutoMove.GetCurrentCheckpoint();
-            if (target != null)
-            {
-                rb.MovePosition(rb.position + (new Vector3(target.position.x, rb.position.y, target.position.z) - rb.position).normalized * Time.fixedDeltaTime * autoSpeed);
-            }
+            rb.MovePosition(rb.position + (new Vector3(target.position.x, rb.position.y, target.position.z) - rb.position).normalized * Time.fixedDeltaTime * autoSpeed);
         }
 
 
@@ -114,13 +112,23 @@ public class VehicleScript : MonoBehaviour
 
                 //Rotiert das objekt in richtung der aktuellen geschwindigkeit 
         clampRotation();
-        if (rb.velocity.magnitude > 0.5f)
+        if (ufoIsPulling == false)
+        {
+            if (target != null && rb.velocity.magnitude < autoSpeed * 1.2f)
+            {
+                float rotationSpeed = Time.deltaTime * 100;
+                rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation((new Vector3(target.position.x, rb.position.y, target.position.z) - rb.position).normalized, Vector3.up), rotationSpeed);
+            }
+        }
+
+        else if (rb.velocity.magnitude > 0.5f)
         {
             float rotationSpeed = 2 * Time.deltaTime * rb.velocity.magnitude;
             if (rotationSpeed > 200 * Time.deltaTime)
                 rotationSpeed = 200 * Time.deltaTime;
             rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(rb.velocity, Vector3.up), rotationSpeed);
         }
+
     }
 
     public void setResetPoint(Vector3 pos)
