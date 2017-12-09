@@ -40,6 +40,7 @@ public class UfoController : MonoBehaviour
     //--------------------------------------
     private float width;
     private float height;
+    private bool canSwitchSides;
     //--------------------------------------
     //Aktuelle Kamera
     //--------------------------------------
@@ -142,6 +143,7 @@ public class UfoController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        updateMoveRestriction();
         update2DPosition();
         clamp2DPosition();
         selectCamera();
@@ -185,6 +187,15 @@ public class UfoController : MonoBehaviour
     }
 
     /// <summary>
+    /// Bestimmt ob das Ufo die Seite wechseln kann oder nicht und updated die UI
+    /// </summary>
+    void updateMoveRestriction()
+    {
+        canSwitchSides = !(this.isPulling() && this.getCurrentScreen() == playerScreen);
+        border.color = new Color(border.color.r, border.color.g, border.color.b, canSwitchSides ?  0.5f : 1.0f);
+    }
+
+    /// <summary>
     /// Aktualisiert GUI (2D)
     /// </summary>
     void update2DPosition()
@@ -218,12 +229,15 @@ public class UfoController : MonoBehaviour
     {
         Vector3 clampdPos = this.transform.position;
         clampdPos.y = Mathf.Clamp(clampdPos.y, 0 + this.height / 2.0f, canvasInfo.CanvasHeight - this.height / 2.0f);
-        if (this.isPulling() && this.getCurrentScreen() == playerScreen)
+        if (!canSwitchSides)
         {
+<<<<<<< HEAD
             //Debug.Log("OTHER CLAMP");
+=======
+>>>>>>> 44beb21d32fbab43e4f5760719ba360a322f1a27
             float minX = playerScreen == Screen.LEFT ? (0 + this.width / 2.0f) : (canvasInfo.CanvasWidth / 2.0f + this.width / 2.0f);
             float maxX = playerScreen == Screen.LEFT ? (canvasInfo.CanvasWidth / 2.0f - this.width / 2.0f) : (canvasInfo.CanvasWidth - this.width / 2.0f);
-            clampdPos.x = Mathf.Clamp(clampdPos.x, 0 + this.width / 2.0f, canvasInfo.CanvasWidth - this.width / 2.0f);
+            clampdPos.x = Mathf.Clamp(clampdPos.x, minX, maxX);
         }
         else
         {
