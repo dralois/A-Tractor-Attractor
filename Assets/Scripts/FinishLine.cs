@@ -25,24 +25,30 @@ public class FinishLine : MonoBehaviour {
     [SerializeField]
     private Text p2TurnGui;
 
+    bool finished;
+
 
     private void Start()
     {
         gameObject.GetComponent<MeshRenderer>().material.mainTextureScale =  new Vector2(transform.localScale.x, transform.localScale.z);
         p1RoundCounter = 1;
         p2RoundCounter = 1;
+        finished = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (finished)
+            return;
         if(other.name == PlayerOne.name)
         {
-            if (Vector3.Dot(other.GetComponent<Rigidbody>().velocity, this.transform.forward) > 0)
+            if (other.GetComponent<Rigidbody>().position.z < this.transform.position.z)
             {
-                if (p1RoundCounter == 3)
+                if (p1RoundCounter == 3 && !finished)
                 {
                     Winner.text = PlayerOneName.ToUpper() + " WINS!";
                     SoundManager.Instance.PlaySingle(WinSound);
+                    finished = true;
                 }
                 else
                 {
@@ -59,12 +65,13 @@ public class FinishLine : MonoBehaviour {
 
         else if(other.name == PlayerTwo.name)
         {
-            if (Vector3.Dot(other.GetComponent<Rigidbody>().velocity, this.transform.forward) > 0)
+            if (other.GetComponent<Rigidbody>().position.z < this.transform.position.z)
             {
-                if (p2RoundCounter == 3)
+                if (p2RoundCounter == 3 && !finished)
                 {
                     Winner.text = PlayerTwoName.ToUpper() + " WINS!";
                     SoundManager.Instance.PlaySingle(WinSound);
+                    finished = true;
                 }
                 else
                 {
