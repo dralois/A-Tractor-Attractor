@@ -48,6 +48,12 @@ public class UfoController : MonoBehaviour
     private float FrustrumHeight;
     private Vector3 FrustrumScale;
 
+    private int mashesPerSecond;
+    private int mashCounter;
+    private float mashInterval;
+    private float lastMashUpdate;
+    private bool firePressed;
+
     void Start()
     {
         //--------------------------------------
@@ -65,6 +71,12 @@ public class UfoController : MonoBehaviour
 
         FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
         FrustrumScale = ufo.localScale;
+
+        mashCounter = 0;
+        mashesPerSecond = 0;
+        mashInterval = 1.0f;
+        lastMashUpdate = 0;
+        firePressed = false;
     }
 
     /// <summary>
@@ -115,6 +127,11 @@ public class UfoController : MonoBehaviour
         }
     }
 
+    public int getMashesPerSecond()
+    {
+        return mashesPerSecond;
+    }
+
     /// <summary>
     /// Player Index
     /// </summary>
@@ -129,6 +146,7 @@ public class UfoController : MonoBehaviour
         clamp2DPosition();
         selectCamera();
         updateUfoPosition();
+        updateMash();
     }
 
     private void Update()
@@ -202,7 +220,7 @@ public class UfoController : MonoBehaviour
         clampdPos.y = Mathf.Clamp(clampdPos.y, 0 + this.height / 2.0f, canvasInfo.CanvasHeight - this.height / 2.0f);
         if (this.isPulling() && this.getCurrentScreen() == playerScreen)
         {
-            Debug.Log("OTHER CLAMP");
+            //Debug.Log("OTHER CLAMP");
             float minX = playerScreen == Screen.LEFT ? (0 + this.width / 2.0f) : (canvasInfo.CanvasWidth / 2.0f + this.width / 2.0f);
             float maxX = playerScreen == Screen.LEFT ? (canvasInfo.CanvasWidth / 2.0f - this.width / 2.0f) : (canvasInfo.CanvasWidth - this.width / 2.0f);
             clampdPos.x = Mathf.Clamp(clampdPos.x, 0 + this.width / 2.0f, canvasInfo.CanvasWidth - this.width / 2.0f);
@@ -212,5 +230,33 @@ public class UfoController : MonoBehaviour
             clampdPos.x = Mathf.Clamp(clampdPos.x, 0 + this.width / 2.0f, canvasInfo.CanvasWidth - this.width / 2.0f);
         }
         this.transform.position = clampdPos;
+    }
+
+    /// <summary>
+    /// berechne MashperSecond
+    /// </summary>
+    void updateMash()
+    {
+        if (Input.GetAxis("Fire_P" + playerIndex) > 0 && !firePressed)
+        {
+            mashCounter++;
+            //Debug.Log("pressed");
+            firePressed = true;
+        }
+        else if (Input.GetAxis("Fire_P" + playerIndex) == 0)
+        {
+            firePressed = false;
+        }
+
+        lastMashUpdate += Time.deltaTime;
+
+        if (lastMashUpdate > mashInterval)
+        {
+            float mashes = mashCounter;
+            mashesPerSecond = (int)(mashes / mashInterval);
+            //Debug.Log("MPS: " + mashes / mashInterval + "; Mashes: " + mashCounter);
+            lastMashUpdate = 0;
+            mashCounter = 0;
+        }
     }
 }
