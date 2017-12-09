@@ -109,6 +109,15 @@ public class UfoController : MonoBehaviour
     }
 
     /// <summary>
+    /// Richtung der Ufosteuerung
+    /// </summary>
+    public Vector2 getDirection()
+    {
+        return new Vector2(getCurrentScreen() == Screen.LEFT ? transform.position.x < (canvasInfo.CanvasWidth / 4.0f) ? -1.0f : 1.0f : transform.position.x < (3.0f* canvasInfo.CanvasWidth / 4.0f) ? -1.0f : 1.0f,
+                           transform.position.y < (canvasInfo.CanvasHeight / 2.0f) ? -1.0f : 1.0f);
+    }
+
+    /// <summary>
     /// Position in 3D
     /// </summary>
     public Vector3 getWorldPosition()

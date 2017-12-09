@@ -3,11 +3,13 @@
 public class CameraFollow : MonoBehaviour {
 
     //-----------------------------------------------
-    //Kamera Target
+    //Kamera Target & UFO
     //-----------------------------------------------
     [Header("Camera Target")]
     [SerializeField]
     private Transform m_Target;
+    [SerializeField]
+    private UfoController m_Control;
     //-----------------------------------------------
     //Sonstiges
     //-----------------------------------------------
@@ -57,16 +59,18 @@ public class CameraFollow : MonoBehaviour {
         //Passe Kamera FOV an
         //-----------------------------------------------
         m_Camera.fieldOfView= Mathf.Lerp(m_Camera.fieldOfView, Mathf.Lerp(m_MinFOV, m_MaxFOV, l_LerpVal), 
-                                         Time.deltaTime * m_FOVSmoothSpeed);
+                                         Time.deltaTime * m_FOVSmoothSpeed);        
         //-----------------------------------------------
         //Interpolation Wert
         //-----------------------------------------------
         float interpolation = m_TranslateSmoothSpeed * Time.deltaTime;
+        Vector3 l_Add = new Vector3(m_Control.getDirection().x * m_Offset, 0, m_Control.getDirection().y * m_Offset);
+        Debug.Log(l_Add);
         //-----------------------------------------------
         //Update Position
         //-----------------------------------------------
-        transform.position = new Vector3(Mathf.Lerp(transform.position.x, m_Target.position.x + Mathf.Sign(m_TargetRB.velocity.x) * m_Offset, interpolation),
+        transform.position = new Vector3(Mathf.Lerp(transform.position.x, m_Target.position.x + l_Add.x, interpolation),
                                          transform.position.y,
-                                         Mathf.Lerp(transform.position.z, m_Target.position.z + Mathf.Sign(m_TargetRB.velocity.z) * m_Offset, interpolation));
+                                         Mathf.Lerp(transform.position.z, m_Target.position.z + l_Add.z, interpolation));
     }
 }
