@@ -24,21 +24,14 @@ public class VehicleScript : MonoBehaviour
     
     //private variables
     private Rigidbody rb;
-
-    // Use this for initialization
+    
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody>();
         rb.maxAngularVelocity = maxAngularVelocity;
 
         resetPoint = rb.position;
-        previousVelocity = rb.velocity;
-    }
-
-    void Update()
-    {
-
-    }
+    }    
 	
     void clampRotation()
     {
@@ -47,15 +40,11 @@ public class VehicleScript : MonoBehaviour
         euler.x = 0;
         rb.rotation = Quaternion.Euler(euler);
     }
-    // Update is called once per frame    
+    
     void FixedUpdate()
     {
         if (CountDown.CountdownActive)
             { return; }
-
-
-
-
 
         //calculate forces on corners and apply it to the rigidbody
         for (int i = 0; i < 4; i++)
