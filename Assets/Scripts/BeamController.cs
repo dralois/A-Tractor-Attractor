@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class BeamController : MonoBehaviour {
 
     private LineRenderer lr;
