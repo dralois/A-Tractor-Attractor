@@ -382,7 +382,7 @@ Prefab:
     - target: {fileID: 114477232455008116, guid: 050feae2c1cbd284b8a93722196b0dbd,
         type: 2}
       propertyPath: autoSpeed
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 050feae2c1cbd284b8a93722196b0dbd, type: 2}
@@ -1069,7 +1069,7 @@ Prefab:
     - target: {fileID: 114477232455008116, guid: 050feae2c1cbd284b8a93722196b0dbd,
         type: 2}
       propertyPath: autoSpeed
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 050feae2c1cbd284b8a93722196b0dbd, type: 2}
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   - {fileID: 2075520489}
   showLigtsInLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
 --- !u!20 &657742304
 Camera:
   m_ObjectHideFlags: 0
@@ -2031,7 +2031,7 @@ MonoBehaviour:
   - {fileID: 2075520489}
   showLigtsInLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!20 &1727251309
 Camera:
   m_ObjectHideFlags: 0

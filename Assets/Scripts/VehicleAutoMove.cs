@@ -35,9 +35,21 @@ public class VehicleAutoMove : MonoBehaviour {
         if(other.tag == "Traktor")
         {
             var vehicle = other.GetComponent<VehicleScript>();
-            if(vehicle.playerIndex == PlayerIndex && checkpointIndex <= idx && checkpointIndex < Checkpoints.Length-1)
+            if(vehicle.playerIndex == PlayerIndex)
             {
-                checkpointIndex++;
+                if(idx == checkpointIndex - 1) // letzter checkpoint 
+                {
+                    checkpointIndex --;
+                }
+                else if(idx >= checkpointIndex && checkpointIndex < Checkpoints.Length - 1)
+                {
+                    checkpointIndex++;
+                }
+                if(checkpointIndex == Checkpoints.Length -1)
+                {
+                    Debug.Log("Finished!");
+                }
+                
             }
         }
     }
