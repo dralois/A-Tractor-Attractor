@@ -955,16 +955,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114942794818959360, guid: 64bb0c1a86406954b94b2632f7a8ddf7,
+    - target: {fileID: 224066466883674450, guid: 64bb0c1a86406954b94b2632f7a8ddf7,
         type: 2}
-      propertyPath: textTransform
-      value: 
-      objectReference: {fileID: 359140580}
-    - target: {fileID: 114722090098078292, guid: 64bb0c1a86406954b94b2632f7a8ddf7,
+      propertyPath: m_LocalPosition.x
+      value: 149.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 224627302452782614, guid: 64bb0c1a86406954b94b2632f7a8ddf7,
         type: 2}
-      propertyPath: textTransform
-      value: 
-      objectReference: {fileID: 1727251310}
+      propertyPath: m_LocalPosition.x
+      value: -149.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64bb0c1a86406954b94b2632f7a8ddf7, type: 2}
   m_IsPrefabParent: 0
