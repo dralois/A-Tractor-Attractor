@@ -36,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1310209633445148}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.1, z: 100}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -6.371776, y: -4.6, z: -6.4323425}
   m_LocalScale: {x: 20, y: 0.01, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,4 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerOne: {fileID: 0}
+  PlayerOneName: red
   PlayerTwo: {fileID: 0}
+  PlayerTwoName: blue
+  Winner: {fileID: 0}
+  WinSound: {fileID: 8300000, guid: fd5ad5358c4c2574897117b79cf16780, type: 3}

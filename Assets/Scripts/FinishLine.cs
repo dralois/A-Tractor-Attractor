@@ -14,6 +14,8 @@ public class FinishLine : MonoBehaviour {
     private string PlayerTwoName;
     [SerializeField]
     private Text Winner;
+    [SerializeField]
+    private AudioClip WinSound;
 
     private void Start()
     {
@@ -25,10 +27,12 @@ public class FinishLine : MonoBehaviour {
         if(other.name == PlayerOne.name)
         {
             Winner.text = PlayerOneName.ToUpper() + " WINS!";
+            SoundManager.Instance.PlaySingle(WinSound);
         }
         else if(other.name == PlayerTwo.name)
         {
             Winner.text = PlayerTwoName.ToUpper() + " WINS!";
+            SoundManager.Instance.PlaySingle(WinSound);
         }
     }
 }

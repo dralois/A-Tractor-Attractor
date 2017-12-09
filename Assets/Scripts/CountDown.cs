@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class CountDown : MonoBehaviour
 {
-
-    public Text textObject;
+    [SerializeField]
+    private Text textObject;
+    [SerializeField]
+    private AudioClip startSound;
 
     private int counter;
     private float refTime;
@@ -16,6 +18,7 @@ public class CountDown : MonoBehaviour
     void Start()
     {
         Reset();
+        SoundManager.Instance.PlaySingle(startSound);
     }
 
     void Update()

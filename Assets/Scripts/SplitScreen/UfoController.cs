@@ -64,6 +64,11 @@ public class UfoController : MonoBehaviour
     private float lastMashUpdate;
     private bool firePressed;
 
+    [SerializeField]
+    private AudioClip teleportClip;
+    private bool wasPulling= false;
+    private Screen currScreen;
+
     void Start()
     {
         //--------------------------------------
@@ -158,6 +163,9 @@ public class UfoController : MonoBehaviour
         return playerIndex;
     }
 
+    /// <summary>
+    /// Updated Position
+    /// </summary>
     private void FixedUpdate()
     {
         selectCamera();
@@ -168,13 +176,26 @@ public class UfoController : MonoBehaviour
         updateMash();
     }
 
+    /// <summary>
+    /// Updated Skalierung und Sound
+    /// </summary>
     private void Update()
     {
-        //--------------------------------------
-        //Passe Scale an
-        //--------------------------------------
         float newScale = (2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad));
         ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
+        if (isPulling())
+        {
+            if (!wasPulling)
+            {
+                SoundManager.Instance.PlayLooping();
+                wasPulling = true;
+            }
+        }
+        else if(wasPulling)
+        {
+            SoundManager.Instance.StopLooping();
+            wasPulling = false;
+        }
     }
 
     /// <summary>
@@ -196,6 +217,10 @@ public class UfoController : MonoBehaviour
             int layer = LayerMask.NameToLayer(layerPlayer1);
             ufo.gameObject.layer = layer;
             beam.gameObject.layer = layer;
+            if(!CountDown.CountdownActive)
+                if (this.getCurrentScreen() != currScreen)
+                    SoundManager.Instance.RandomizeSFX(teleportClip);
+            currScreen = Screen.LEFT;
         }
         else
         {
@@ -203,7 +228,12 @@ public class UfoController : MonoBehaviour
             int layer = LayerMask.NameToLayer(layerPlayer2);
             ufo.gameObject.layer = layer;
             beam.gameObject.layer = layer;
+            if (!CountDown.CountdownActive)
+                if (this.getCurrentScreen() != currScreen)
+                    SoundManager.Instance.RandomizeSFX(teleportClip);
+            currScreen = Screen.RIGHT;
         }
+
     }
 
     /// <summary>
