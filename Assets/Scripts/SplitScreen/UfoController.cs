@@ -72,8 +72,8 @@ public class UfoController : MonoBehaviour
 
         selectCamera();
 
-        //FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
-        //FrustrumScale = ufo.localScale;
+        FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        FrustrumScale = ufo.localScale * 2.0f;
 
         mashCounter = 0;
         mashesPerSecond = 0;
@@ -155,8 +155,8 @@ public class UfoController : MonoBehaviour
 
     private void Update()
     {
-        //float newScale = (2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad));
-        //ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
+        float newScale = (2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad));
+        ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
     }
 
     /// <summary>
