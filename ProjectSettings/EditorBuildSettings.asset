@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 63f27062ade79644dbc1dc7c7f4530fe
+  - enabled: 1
+    path: Assets/Scenes/SplitScreenTest.unity
+    guid: bc139aa72be8ec4438a6ffbff136c7fe
