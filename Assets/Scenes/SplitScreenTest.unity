@@ -761,17 +761,22 @@ Prefab:
     - target: {fileID: 108596455543115402, guid: a1eb7f977895bcb4197e6962c2ca13d7,
         type: 2}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.22745098
       objectReference: {fileID: 0}
     - target: {fileID: 108596455543115402, guid: a1eb7f977895bcb4197e6962c2ca13d7,
         type: 2}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.7882353
       objectReference: {fileID: 0}
     - target: {fileID: 108596455543115402, guid: a1eb7f977895bcb4197e6962c2ca13d7,
         type: 2}
       propertyPath: m_SpotAngle
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 120340574761108240, guid: a1eb7f977895bcb4197e6962c2ca13d7,
+        type: 2}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1eb7f977895bcb4197e6962c2ca13d7, type: 2}
@@ -2852,7 +2857,7 @@ MonoBehaviour:
   m_Target: {fileID: 1449251460}
   m_Control: {fileID: 213518590}
   m_TranslateSmoothSpeed: 5
-  m_Offset: 10
+  m_Offset: 0
   m_FOVSmoothSpeed: 1
   m_MaxSpeed: 60
   m_MinFOV: 40
@@ -3198,6 +3203,11 @@ Prefab:
         type: 2}
       propertyPath: m_SpotAngle
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 120340574761108240, guid: a1eb7f977895bcb4197e6962c2ca13d7,
+        type: 2}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1eb7f977895bcb4197e6962c2ca13d7, type: 2}

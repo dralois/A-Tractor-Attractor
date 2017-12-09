@@ -1,14 +1,26 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour {
 
-    public string LevelName;    
+    public string LevelName;
+    private bool tutorial = true;
+    [SerializeField]
+    Image tutorialScreen;
 	
 	void Update () {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene(LevelName);
+            if(tutorial)
+            {
+                tutorialScreen.gameObject.SetActive(true);
+                tutorial = false;
+            }
+            else
+            {
+                SceneManager.LoadScene(LevelName);
+            }
         }
 	}
 }
