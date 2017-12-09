@@ -11,6 +11,10 @@ public class Cursor : MonoBehaviour
     private float speed;
     [SerializeField]
     private float ufoHeight;
+    [SerializeField]
+    private float maxRotation;
+    [SerializeField]
+    private float rotationSpeed;
     [Header("Components")]
     [SerializeField]
     private Camera playerCam1;
@@ -105,6 +109,12 @@ public class Cursor : MonoBehaviour
         Vector2 direction = new Vector2(x,y); //TODO evtl normalizen
 
         Vector3 offset = new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
+        //--------------------------------------
+        //Rotation
+        //--------------------------------------
+        ufo.transform.rotation = Quaternion.Slerp(ufo.transform.rotation,
+                                                  Quaternion.Euler(maxRotation * y, 0 , -maxRotation * x),
+                                                  rotationSpeed * Time.deltaTime);
         this.transform.position +=  offset;
     }
 
