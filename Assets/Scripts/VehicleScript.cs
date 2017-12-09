@@ -19,6 +19,10 @@ public class VehicleScript : MonoBehaviour {
 
     private Vector3 resetPoint;
 
+    private Vector3 previousVelocity;
+
+    public float deltaVLimit;
+
     //private variables
     private Rigidbody rb;
 
@@ -28,6 +32,8 @@ public class VehicleScript : MonoBehaviour {
         rb.maxAngularVelocity = maxAngularVelocity;
 
         resetPoint = rb.position;
+        previousVelocity = rb.velocity;
+        deltaVLimit = 10.0f;
     }
 
     void Update()
@@ -45,10 +51,6 @@ public class VehicleScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (CountDown.CountdownActive)
-        {
-            return;
-        }
         //calculate forces on corners and apply it to the rigidbody
         for(int i = 0; i < 4; i++)
         {
@@ -70,6 +72,7 @@ public class VehicleScript : MonoBehaviour {
                 Vector3 ufoForce;
 
                 ufoForce = cornerToUfo.normalized * beamStrength;
+                Debug.Log(cornerToUfo.normalized);
 
                 force += ufoForce;
             }
@@ -91,6 +94,12 @@ public class VehicleScript : MonoBehaviour {
             if(rb.velocity.y  > 0)
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
+
+        //clamp velocity
+        if(rb.velocity.magnitude - previousVelocity.magnitude < deltaVLimit)
+            rb.velocity = previousVelocity;
+        else
+            previousVelocity = rb.velocity;
     }
 
     public void setResetPoint(Vector3 pos)
