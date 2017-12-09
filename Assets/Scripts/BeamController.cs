@@ -27,10 +27,12 @@ public class BeamController : MonoBehaviour {
         if (playerCursor.getCurrentScreen() == Screen.LEFT)
         {
             this.lr.SetPosition(1, vehicle1.position);
+            this.transform.LookAt(vehicle1);
         }
         else
         {
             this.lr.SetPosition(1, vehicle2.position);
+            this.transform.LookAt(vehicle2);
         }
     }
 }

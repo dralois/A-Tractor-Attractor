@@ -129,8 +129,8 @@ public class Cursor : MonoBehaviour
 
     private void Update()
     {
-        float newScale = (2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad));
-        ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
+        //float newScale = (2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad));
+        //ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
     }
 
     /// <summary>
