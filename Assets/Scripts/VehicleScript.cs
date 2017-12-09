@@ -25,6 +25,8 @@ public class VehicleScript : MonoBehaviour
 
     private Vector3 previousVelocity;
 
+    bool inMud;
+
     //private variables
     private Rigidbody rb;
     public bool Dead { get; private set; }
@@ -37,6 +39,8 @@ public class VehicleScript : MonoBehaviour
         rb.maxAngularVelocity = maxAngularVelocity;
 
         resetPoint = rb.position;
+
+        inMud = false;
     }    
 	
     void clampRotation()
@@ -92,7 +96,10 @@ public class VehicleScript : MonoBehaviour
 
         if (ufoIsPulling == false && target != null && rb.velocity.magnitude < autoSpeed * 1.5f)
         {
-            rb.MovePosition(rb.position + (new Vector3(target.position.x, rb.position.y, target.position.z) - rb.position).normalized * Time.fixedDeltaTime * autoSpeed);
+            if(!inMud)
+                rb.MovePosition(rb.position + (new Vector3(target.position.x, rb.position.y, target.position.z) - rb.position).normalized * Time.fixedDeltaTime * autoSpeed);
+            else
+                rb.MovePosition(rb.position + (new Vector3(target.position.x, rb.position.y, target.position.z) - rb.position).normalized * Time.fixedDeltaTime * autoSpeed * 0.5f);
         }
 
 
@@ -163,6 +170,24 @@ public class VehicleScript : MonoBehaviour
             m.color = new Color(m.color.r, m.color.g, m.color.b, 1.0f);
             m.SetFloat("_Metallic", metallInformatin[i]);
             i++;
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Mud")
+        {
+            inMud = true;
+            maxAngularVelocity = 10;
+        }
+    }
+
+    void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.tag == "Mud")
+        {
+            inMud = false;
+            maxAngularVelocity = 1;
         }
     }
 }
