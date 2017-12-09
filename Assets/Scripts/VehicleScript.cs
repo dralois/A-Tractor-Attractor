@@ -60,21 +60,8 @@ public class VehicleScript : MonoBehaviour {
                 Vector3 ufoAdaptedHeight = new Vector3(ufo.getWorldPosition().x, corners[i].position.y, ufo.getWorldPosition().z);
                 Vector3 cornerToUfo = ufoAdaptedHeight - corners[i].position;
                 Vector3 ufoForce;
-                if (ufos[0].getCurrentScreen() == ufos[1].getCurrentScreen())
-                {
-                    float mashScaling = ufo.getMashesPerSecond() - 5;
-                    if (mashScaling < 0)
-                        mashScaling = 0;
-                    ufoForce = cornerToUfo.normalized * ((beamStrength * mashScaling) / (cornerToUfo.magnitude));
-                }
 
-                else
-                {
-                    ufoForce = cornerToUfo.normalized * ((beamStrength / (cornerToUfo.magnitude + 3)) * 3 + 1);
-                }
-
-                if (ufo.getPlayerIndex() != playerIndex)
-                    ufoForce *= enemyBeamScaling;
+                ufoForce = cornerToUfo.normalized * beamStrength;
 
                 force += ufoForce;
             }
