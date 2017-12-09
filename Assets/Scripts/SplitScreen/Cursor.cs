@@ -39,6 +39,9 @@ public class Cursor : MonoBehaviour
     //--------------------------------------
     private Camera currentTargetCam;
 
+    private float FrustrumHeight;
+    private Vector3 FrustrumScale;
+
     void Start()
     {
         //--------------------------------------
@@ -51,6 +54,11 @@ public class Cursor : MonoBehaviour
         //Erstelle Ebene für 3D-Positionsbestimmung
         //-----------------------------------------
         groundPlane = new Plane(Vector3.up, new Vector3(0, ufoHeight,0));
+
+        selectCamera();
+
+        FrustrumHeight = 2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        FrustrumScale = ufo.localScale;
     }
 
     /// <summary>
@@ -106,6 +114,8 @@ public class Cursor : MonoBehaviour
     void updateUfoPosition()
     {
         ufo.position = getWorldPosition();
+        float newScale = (2.0f * Vector3.Distance(currentTargetCam.transform.position, ufo.position) * Mathf.Tan(currentTargetCam.fieldOfView * 0.5f * Mathf.Deg2Rad));    
+        ufo.localScale = FrustrumScale / (FrustrumHeight / newScale);
     }
 
     /// <summary>

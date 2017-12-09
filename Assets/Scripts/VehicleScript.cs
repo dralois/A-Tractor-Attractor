@@ -34,7 +34,7 @@ public class VehicleScript : MonoBehaviour {
                 if (ufo.getCurrentScreen() != screen)
                     continue;
 
-                Debug.Log(ufo.getWorldPosition());
+                //Debug.Log(ufo.getWorldPosition());
                 Vector3 ufoAdaptedHeight = new Vector3(ufo.getWorldPosition().x, corners[i].position.y, ufo.getWorldPosition().z);
                 Vector3 cornerToUfo = ufoAdaptedHeight - corners[i].position;
                 force += cornerToUfo.normalized * beamStrength;//(beamStrength / cornerToUfo.magnitude);
