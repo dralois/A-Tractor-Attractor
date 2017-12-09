@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Cursor : MonoBehaviour
+public class UfoController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField]
     private int playerIndex;
+    [SerializeField]
+    private Screen playerScreen;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -23,6 +25,8 @@ public class Cursor : MonoBehaviour
     private Transform ufo;
     [SerializeField]
     private BeamController beam;
+    [SerializeField]
+    private Image border;
     [Header("Requirements")]
     [SerializeField]
     private string layerPlayer1= "Ufo_Player_1";
@@ -195,8 +199,18 @@ public class Cursor : MonoBehaviour
     void clamp2DPosition()
     {
         Vector3 clampdPos = this.transform.position;
-        clampdPos.x = Mathf.Clamp(clampdPos.x, 0 + this.width / 2.0f, canvasInfo.CanvasWidth - this.width / 2.0f);
-        clampdPos.y = Mathf.Clamp(clampdPos.y, 0 + this.height / 2.0f, canvasInfo.CanvasHeight- this.height / 2.0f);
+        clampdPos.y = Mathf.Clamp(clampdPos.y, 0 + this.height / 2.0f, canvasInfo.CanvasHeight - this.height / 2.0f);
+        if (this.isPulling() && this.getCurrentScreen() == playerScreen)
+        {
+            Debug.Log("OTHER CLAMP");
+            float minX = playerScreen == Screen.LEFT ? (0 + this.width / 2.0f) : (canvasInfo.CanvasWidth / 2.0f + this.width / 2.0f);
+            float maxX = playerScreen == Screen.LEFT ? (canvasInfo.CanvasWidth / 2.0f - this.width / 2.0f) : (canvasInfo.CanvasWidth - this.width / 2.0f);
+            clampdPos.x = Mathf.Clamp(clampdPos.x, 0 + this.width / 2.0f, canvasInfo.CanvasWidth - this.width / 2.0f);
+        }
+        else
+        {
+            clampdPos.x = Mathf.Clamp(clampdPos.x, 0 + this.width / 2.0f, canvasInfo.CanvasWidth - this.width / 2.0f);
+        }
         this.transform.position = clampdPos;
     }
 }
