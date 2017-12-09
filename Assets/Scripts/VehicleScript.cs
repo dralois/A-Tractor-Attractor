@@ -12,6 +12,8 @@ public class VehicleScript : MonoBehaviour {
     public Cursor[] ufos;
     public Transform[] corners;
 
+    public float maxHeight = 2.0f;
+
     public int playerIndex;
     public Screen screen;
 
@@ -75,10 +77,10 @@ public class VehicleScript : MonoBehaviour {
         rb.velocity = transform.TransformDirection(locVel);
 
         //clamp y coordinate
-        if (rb.position.y > 1)
+        if (rb.position.y > maxHeight)
         {
             //rb.position.Set(rb.position.x, 1, rb.position.z);
-            rb.transform.Translate(new Vector3(0, 1- rb.position.y, 0));
+            rb.transform.Translate(new Vector3(0, maxHeight - rb.position.y, 0));
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
     }

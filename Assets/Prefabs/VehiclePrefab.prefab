@@ -323,5 +323,6 @@ MonoBehaviour:
   - {fileID: 4696860024598974}
   - {fileID: 4470377292346800}
   - {fileID: 4712406804980976}
+  maxHeight: 2
   playerIndex: 1
   screen: 0
