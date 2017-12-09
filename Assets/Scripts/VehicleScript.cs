@@ -29,7 +29,11 @@ public class VehicleScript : MonoBehaviour {
         //Rotiert das objekt in richtung der aktuellen geschwindigkeit 
         if (rb.velocity.magnitude > 0.5f) 
         {
-            rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rb.velocity), 200 * Time.deltaTime);
+            float rotationSpeed = 2 * Time.deltaTime * rb.velocity.magnitude;
+            if (rotationSpeed > 200 * Time.deltaTime)
+                rotationSpeed = 200 * Time.deltaTime;
+
+            rb.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(rb.velocity), rotationSpeed);
         }
     }
 	
@@ -48,7 +52,7 @@ public class VehicleScript : MonoBehaviour {
                 if (!ufo.isPulling())
                     continue;
 
-                Debug.Log("inside");
+                //Debug.Log("inside");
                 applyForce = true;
 
                 Vector3 ufoAdaptedHeight = new Vector3(ufo.getWorldPosition().x, corners[i].position.y, ufo.getWorldPosition().z);
@@ -69,5 +73,13 @@ public class VehicleScript : MonoBehaviour {
         var locVel = transform.InverseTransformDirection(rb.velocity);
         locVel.x *= sidewaysDamping;
         rb.velocity = transform.TransformDirection(locVel);
+
+        //clamp y coordinate
+        if (rb.position.y > 1)
+        {
+            //rb.position.Set(rb.position.x, 1, rb.position.z);
+            rb.transform.Translate(new Vector3(0, 1- rb.position.y, 0));
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        }
     }
 }
