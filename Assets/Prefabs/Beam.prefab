@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4153932713801182}
   - component: {fileID: 120340574761108240}
   - component: {fileID: 114186327690535704}
-  m_Layer: 0
+  - component: {fileID: 108596455543115402}
+  m_Layer: 9
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,13 +35,49 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426008430350426}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7693558, y: 4.5026054, z: -11.454694}
+  m_LocalRotation: {x: 0.7925106, y: -0, z: -0, w: 0.6098582}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 104.841, y: -0.000015258789, z: -0.000015258789}
+--- !u!108 &108596455543115402
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426008430350426}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 0
+  m_Color: {r: 0, g: 1, b: 0.21379304, a: 1}
+  m_Intensity: 10
+  m_Range: 50
+  m_SpotAngle: 10
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114186327690535704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,8 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd21d21c73531414b9c1fe402cf41d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t1: {fileID: 0}
-  t2: {fileID: 0}
+  playerCursor: {fileID: 0}
+  ufo: {fileID: 0}
+  vehicle1: {fileID: 0}
+  vehicle2: {fileID: 0}
 --- !u!120 &120340574761108240
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -91,56 +130,57 @@ LineRenderer:
   m_Positions:
   - {x: 0, y: 6, z: -11}
   - {x: -1, y: 1, z: -14}
+  - {x: -1, y: 1, z: -14}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
         value: 1
-        inSlope: 0
-        outSlope: 0
+        inSlope: -1.0733107
+        outSlope: -1.0733107
         tangentMode: 0
       - serializedVersion: 2
         time: 1
-        value: 0.21276248
-        inSlope: -0.42271757
-        outSlope: -0.42271757
+        value: 0.072071075
+        inSlope: -0.66254234
+        outSlope: -0.66254234
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.14229222, g: 0.89705884, b: 0, a: 1}
-      key1: {r: 0, g: 1, b: 0.048275948, a: 0}
-      key2: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 0.14229222, g: 0.89705884, b: 0, a: 0}
+      key1: {r: 0.072820134, g: 0.9473184, b: 0.023570022, a: 1}
+      key2: {r: 0, g: 1, b: 0.048275948, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 54163
+      ctime1: 32768
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
+      atime1: 32768
+      atime2: 65535
+      atime3: 65535
+      atime4: 65535
+      atime5: 65535
+      atime6: 65535
+      atime7: 65535
       m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumColorKeys: 3
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
