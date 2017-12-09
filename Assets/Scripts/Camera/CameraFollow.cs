@@ -16,9 +16,14 @@ public class CameraFollow : MonoBehaviour {
     //-----------------------------------------------
     //Einstellungen
     //-----------------------------------------------
-    [Header("Settings")]
+    [Header("Movement-Settings")]
     [SerializeField]
-    private float m_SmoothSpeed;
+    private float m_TranslateSmoothSpeed;
+    [SerializeField]
+    private float m_Offset;
+    [Header("FOV-Settings")]
+    [SerializeField]
+    private float m_FOVSmoothSpeed;
     [SerializeField]
     private float m_MaxSpeed;
     [SerializeField]
@@ -51,16 +56,17 @@ public class CameraFollow : MonoBehaviour {
         //-----------------------------------------------
         //Passe Kamera FOV an
         //-----------------------------------------------
-        m_Camera.fieldOfView= Mathf.Lerp(m_MinFOV, m_MaxFOV, l_LerpVal);
+        m_Camera.fieldOfView= Mathf.Lerp(m_Camera.fieldOfView, Mathf.Lerp(m_MinFOV, m_MaxFOV, l_LerpVal), 
+                                         Time.deltaTime * m_FOVSmoothSpeed);
         //-----------------------------------------------
         //Interpolation Wert
         //-----------------------------------------------
-        float interpolation = m_SmoothSpeed * Time.deltaTime;
+        float interpolation = m_TranslateSmoothSpeed * Time.deltaTime;
         //-----------------------------------------------
         //Update Position
         //-----------------------------------------------
-        transform.position = new Vector3(Mathf.Lerp(transform.position.x, m_Target.position.x, interpolation),
+        transform.position = new Vector3(Mathf.Lerp(transform.position.x, m_Target.position.x + Mathf.Sign(m_TargetRB.velocity.x) * m_Offset, interpolation),
                                          transform.position.y,
-                                         Mathf.Lerp(transform.position.z, m_Target.position.z, interpolation));
+                                         Mathf.Lerp(transform.position.z, m_Target.position.z + Mathf.Sign(m_TargetRB.velocity.z) * m_Offset, interpolation));
     }
 }
