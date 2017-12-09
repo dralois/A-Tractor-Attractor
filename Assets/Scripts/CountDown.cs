@@ -7,6 +7,7 @@ public class CountDown : MonoBehaviour
 {
 
     public Text textObject;
+    public Transform textTransform;
 
     private int counter;
     private float refTime;
@@ -52,6 +53,7 @@ public class CountDown : MonoBehaviour
         refTime = 0;
         textObject.text = "" + counter;
         CountdownActive = true;
+        //textObject.transform.position = textTransform.position;
     }
 
     private IEnumerator evade()
