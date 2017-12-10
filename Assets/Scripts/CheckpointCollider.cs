@@ -5,11 +5,13 @@ using UnityEngine;
 public class CheckpointCollider : MonoBehaviour {
 
     private int index;
+    private VehicleAutoMove parent;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start () {
+        parent = gameObject.GetComponentInParent<VehicleAutoMove>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,8 +23,36 @@ public class CheckpointCollider : MonoBehaviour {
         index = idx;
     }
 
+
+
     private void OnTriggerEnter(Collider other)
     {
-        gameObject.GetComponentInParent<VehicleAutoMove>().OnTrigger(other, index);
+
+        if (other.tag == "Traktor")
+        {
+            var vehicle = other.GetComponent<VehicleScript>();
+            if (vehicle.playerIndex == parent.PlayerIndex)
+            {
+                if (Vector3.Dot(this.transform.right, this.transform.position - other.transform.position) > 0)
+                {
+                    parent.nextCheckpoint();
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Traktor")
+        {
+            var vehicle = other.GetComponent<VehicleScript>();
+            if (vehicle.playerIndex == parent.PlayerIndex)
+            {
+                if (Vector3.Dot(this.transform.right, this.transform.position - other.transform.position) > 0)
+                {
+                    parent.prevCheckpoint();
+                }
+            }
+        }
     }
 }

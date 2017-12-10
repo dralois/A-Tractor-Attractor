@@ -30,28 +30,18 @@ public class VehicleAutoMove : MonoBehaviour {
         return Checkpoints[checkpointIndex].transform;
     }
 
-    public void OnTrigger(Collider other, int idx)
+    public void nextCheckpoint()
     {
-        if(other.tag == "Traktor")
-        {
-            var vehicle = other.GetComponent<VehicleScript>();
-            if(vehicle.playerIndex == PlayerIndex)
-            {
-                if(idx == checkpointIndex - 1) // letzter checkpoint 
-                {
-                    checkpointIndex --;
-                }
-                else if(idx >= checkpointIndex && checkpointIndex < Checkpoints.Length)
-                {
-                    checkpointIndex++;
-                }
-                if(checkpointIndex == Checkpoints.Length)
-                {
-                    // TODO Finished!
-                    checkpointIndex = 0;
-                }
-            }
-        }
+        checkpointIndex = (checkpointIndex + 1) % Checkpoints.Length;
+        Debug.Log(checkpointIndex+" inc");
     }
+
+    public void prevCheckpoint()
+    {
+        checkpointIndex = checkpointIndex == 0 ? (Checkpoints.Length - 1) : (checkpointIndex - 1);
+
+        Debug.Log(checkpointIndex + " dec");
+    }
+    
 
 }
