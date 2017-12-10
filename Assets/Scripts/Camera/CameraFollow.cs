@@ -64,8 +64,7 @@ public class CameraFollow : MonoBehaviour {
         //Interpolation Wert
         //-----------------------------------------------
         float interpolation = m_TranslateSmoothSpeed * Time.deltaTime;
-        Vector3 l_Add = new Vector3(m_Control.getDirection().x * m_Offset, 0, m_Control.getDirection().y * m_Offset);
-        //Debug.Log(l_Add);
+        Vector3 l_Add = new Vector3(m_Control.getDirection().x * m_Offset, 0, m_Control.getDirection().y * m_Offset);        
         //-----------------------------------------------
         //Update Position
         //-----------------------------------------------

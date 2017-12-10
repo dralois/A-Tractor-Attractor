@@ -113,8 +113,9 @@ public class UfoController : MonoBehaviour
     /// </summary>
     public Vector2 getDirection()
     {
-        return new Vector2(getCurrentScreen() == Screen.LEFT ? transform.position.x < (canvasInfo.CanvasWidth / 4.0f) ? -1.0f : 1.0f : transform.position.x < (3.0f* canvasInfo.CanvasWidth / 4.0f) ? -1.0f : 1.0f,
-                           transform.position.y < (canvasInfo.CanvasHeight / 2.0f) ? -1.0f : 1.0f);
+        return new Vector2(getCurrentScreen() == Screen.LEFT ? (transform.position.x - (canvasInfo.CanvasWidth / 4.0f)) / (canvasInfo.CanvasWidth /4.0f) : 
+                                                               (transform.position.x  - ((3.0f* canvasInfo.CanvasWidth) / 4.0f)) / (canvasInfo.CanvasWidth / 4.0f),
+                           (transform.position.y - (canvasInfo.CanvasHeight / 2.0f)) / (canvasInfo.CanvasHeight / 2.0f));
     }
 
     /// <summary>
