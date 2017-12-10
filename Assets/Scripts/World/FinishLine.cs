@@ -38,9 +38,9 @@ public class FinishLine : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == PlayerOne.name)
+        if (other.transform.parent.name == PlayerOne.name)
         {
-            if (other.GetComponent<Rigidbody>().position.x > this.transform.position.x)
+            if (other.GetComponentInParent<Rigidbody>().position.x > this.transform.position.x)
             {
                 if (p1RoundCounter == 3 && !finished)
                 {
@@ -56,9 +56,9 @@ public class FinishLine : MonoBehaviour {
 
             p1TurnGui.text = p1RoundCounter + "/3";
         }
-        else if (other.name == PlayerTwo.name)
+        else if (other.transform.parent.name == PlayerTwo.name)
         {
-            if (other.GetComponent<Rigidbody>().position.x > this.transform.position.x)
+            if (other.GetComponentInParent<Rigidbody>().position.x > this.transform.position.x)
             {
                 if (p2RoundCounter == 3 && !finished)
                 {
@@ -79,9 +79,9 @@ public class FinishLine : MonoBehaviour {
     {
         if (finished)
             return;
-        if(other.name == PlayerOne.name)
+        if(other.transform.parent.name == PlayerOne.name)
         {
-            if (other.GetComponent<Rigidbody>().position.x > this.transform.position.x)            
+            if (other.GetComponentInParent<Rigidbody>().position.x > this.transform.position.x)            
             {
                 p1RoundCounter--;
             }
@@ -89,9 +89,9 @@ public class FinishLine : MonoBehaviour {
             p1TurnGui.text = p1RoundCounter + "/3";
         }
 
-        else if(other.name == PlayerTwo.name)
+        else if(other.transform.parent.name == PlayerTwo.name)
         {
-            if (other.GetComponent<Rigidbody>().position.x > this.transform.position.x)
+            if (other.GetComponentInParent<Rigidbody>().position.x > this.transform.position.x)
             {
                 p2RoundCounter--;
             }

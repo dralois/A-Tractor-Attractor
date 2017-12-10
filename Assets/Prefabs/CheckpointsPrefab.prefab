@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4666566927085342}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 65680717995469852}
   - component: {fileID: 23079053125363834}
   - component: {fileID: 114779941497090374}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 65597382199192612}
   - component: {fileID: 23975955476229694}
   - component: {fileID: 114691066516426798}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 65188923381799520}
   - component: {fileID: 23735329709294224}
   - component: {fileID: 114108628464171394}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4038242270242552}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,9 +107,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4218780269448340}
   - component: {fileID: 114730122312422086}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CheckpointsPrefab
-  m_TagString: TraktorBoundingBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4092716493837982}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4308084774108116}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 65164072106763364}
   - component: {fileID: 23448132219495248}
   - component: {fileID: 114382245087418652}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4287501432537100}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 65257759326042230}
   - component: {fileID: 23667746965868614}
   - component: {fileID: 114773387377649090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4485530161601104}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 65578217863661712}
   - component: {fileID: 23014222924375470}
   - component: {fileID: 114253244205441800}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4499297582881272}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 23119906596584204}
   - component: {fileID: 114974336335182228}
   - component: {fileID: 114668429000585984}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 65319921078048976}
   - component: {fileID: 23261523503111774}
   - component: {fileID: 114952355439011406}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 65853820869154526}
   - component: {fileID: 23997276073443556}
   - component: {fileID: 114154895219498364}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4617458051296218}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4142169581030510}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4368139652639104}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 65865459640877714}
   - component: {fileID: 23835644253186886}
   - component: {fileID: 114257954433307062}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

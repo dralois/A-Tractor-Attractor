@@ -26,7 +26,7 @@ public class CheckpointCollider : MonoBehaviour {
                 if (vehicle.Dead)
                     return;
 
-                if (Vector3.Dot(this.transform.right, this.transform.position - other.transform.position) > 0)
+                if (Vector3.Dot(this.transform.right, this.transform.position - other.transform.parent.position) > 0)
                 {
                     parent.nextCheckpoint();
                 }
@@ -41,7 +41,7 @@ public class CheckpointCollider : MonoBehaviour {
             var vehicle = other.GetComponentInParent<VehicleScript>();
             if (vehicle.playerIndex == parent.PlayerIndex)
             {
-                if (Vector3.Dot(this.transform.right, this.transform.position - other.transform.position) > 0)
+                if (Vector3.Dot(this.transform.right, this.transform.position - other.transform.parent.position) > 0)
                 {
                     parent.prevCheckpoint();
                 }
