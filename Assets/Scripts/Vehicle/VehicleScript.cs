@@ -172,24 +172,21 @@ public class VehicleScript : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        if(col.gameObject.tag == "Mud")
+    private void OnTriggerEnter(Collider other)
+    {        
+        if(other.gameObject.tag == "Mud")
         {
-            inMud = true;
-            maxAngularVelocity = 10;
-            rb.mass = 50;
+            rb.mass = 5;
             rb.velocity = rb.velocity.normalized * 10.0f;
         }
     }
 
-    void OnCollisionExit(Collision col)
+    private void OnTriggerExit(Collider other)
     {
-        if (col.gameObject.tag == "Mud")
+        if (other.gameObject.tag == "Mud")
         {
-            inMud = false;
-            maxAngularVelocity = 1;
             rb.mass = 1;
+            maxAngularVelocity = 1;
         }
     }
 }
