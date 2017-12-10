@@ -51,15 +51,19 @@ public class BeamController : MonoBehaviour {
         //--------------------------------------
         //Wave-Effekt
         //--------------------------------------
+        Gradient l_Next = lr.colorGradient;
+        GradientAlphaKey[] l_All = l_Next.alphaKeys;
         if (playerCursor.isPulling())
         {
-            Gradient l_Next = lr.colorGradient;
-            GradientAlphaKey[] l_All = l_Next.alphaKeys;
-
-            l_All[1].time = (l_All[1].time + Time.deltaTime) % 1.0f;            
-            l_Next.alphaKeys = l_All;
-
-            this.lr.colorGradient = l_Next;
+            l_All[1].alpha = 1f;
+            l_All[1].time = (l_All[1].time + Time.deltaTime) % 1.0f;     
         }
+        else
+        {
+            l_All[1].alpha = 0.2f;
+        }
+        l_Next.alphaKeys = l_All;
+
+        this.lr.colorGradient = l_Next;
     }
 }
