@@ -89,7 +89,7 @@ public class VehicleScript : MonoBehaviour
 
             //apply force on rigidbody
             if (applyForce)
-                rb.AddForceAtPosition(force, corners[i].position);
+                rb.AddForceAtPosition(force, corners[i].position, ForceMode.Force);
         }
 
         var target = vehicleAutoMove.GetCurrentCheckpoint();
@@ -178,6 +178,8 @@ public class VehicleScript : MonoBehaviour
         {
             inMud = true;
             maxAngularVelocity = 10;
+            rb.mass = 50;
+            rb.velocity = rb.velocity.normalized * 10.0f;
         }
     }
 
@@ -187,6 +189,7 @@ public class VehicleScript : MonoBehaviour
         {
             inMud = false;
             maxAngularVelocity = 1;
+            rb.mass = 1;
         }
     }
 }
