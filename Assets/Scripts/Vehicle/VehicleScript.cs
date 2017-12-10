@@ -102,7 +102,6 @@ public class VehicleScript : MonoBehaviour
                 rb.MovePosition(rb.position + (new Vector3(target.position.x, rb.position.y, target.position.z) - rb.position).normalized * Time.fixedDeltaTime * autoSpeed * 0.5f);
         }
 
-
         //damp sideways velocity
         var locVel = transform.InverseTransformDirection(rb.velocity);
         locVel.x *= sidewaysDamping;
