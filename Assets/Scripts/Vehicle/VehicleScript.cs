@@ -176,7 +176,7 @@ public class VehicleScript : MonoBehaviour
     {        
         if(other.gameObject.tag == "Mud")
         {
-            rb.mass = 5;
+            rb.mass = 3;
             rb.velocity = rb.velocity.normalized * 10.0f;
         }
     }
