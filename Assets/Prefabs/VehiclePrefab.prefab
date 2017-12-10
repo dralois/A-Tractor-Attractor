@@ -334,6 +334,8 @@ MonoBehaviour:
   - {fileID: 4470377292346800}
   - {fileID: 4712406804980976}
   autoSpeed: 10
+  mud: {fileID: 8300000, guid: d8dcdeba1ad48ad43b48a89f671b72d9, type: 3}
+  tornado: {fileID: 8300000, guid: 86256f0226d328144815ee0e8dbf6942, type: 3}
   maxHeight: 2
   playerIndex: 1
   screen: 0

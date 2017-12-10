@@ -88,6 +88,7 @@ public class SoundManager : MonoBehaviour
         //-----------------------------------------------------------------
         m_SFXSource.pitch = l_RandomPitch;
         m_SFXSource.clip = pi_Clip;
-        m_SFXSource.Play();
+        if(!m_SFXSource.isPlaying)
+            m_SFXSource.Play();
     }
 }

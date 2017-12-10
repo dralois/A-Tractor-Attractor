@@ -16,6 +16,9 @@ public class VehicleScript : MonoBehaviour
     public Transform[] corners;
     public float autoSpeed;
 
+    public AudioClip mud;
+    public AudioClip tornado;
+
     public float maxHeight = 2.0f;
 
     public int playerIndex;
@@ -146,6 +149,7 @@ public class VehicleScript : MonoBehaviour
     {
         rb.position = resetPoint;
         rb.velocity = Vector3.zero;
+        SoundManager.Instance.RandomizeSFX(tornado);
         Dead = true;
         StartCoroutine(respawnTimer());
     }
@@ -178,6 +182,7 @@ public class VehicleScript : MonoBehaviour
         {
             rb.mass = 3;
             rb.velocity = rb.velocity.normalized * 10.0f;
+            SoundManager.Instance.RandomizeSFX(mud);
         }
     }
 
