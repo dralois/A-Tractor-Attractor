@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 114730122312422086}
   m_Layer: 0
   m_Name: CheckpointsPrefab
-  m_TagString: Untagged
+  m_TagString: TraktorBoundingBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 65458819069137462}
   - component: {fileID: 23119906596584204}
   - component: {fileID: 114974336335182228}
+  - component: {fileID: 114668429000585984}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -455,7 +456,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287633021809150}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -41.3, y: 53.115227, z: 2.2}
+  m_LocalPosition: {x: -47.671776, y: 48.415226, z: -104.232346}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4038242270242552}
@@ -1245,6 +1246,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b0f1d4c59d40644ab7cde5d83f8502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114668429000585984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1699183632846228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a4b994bd9517b4ba48adac192e867f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114691066516426798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1278,7 +1290,7 @@ MonoBehaviour:
   - {fileID: 1314471915684882}
   - {fileID: 1663934054546324}
   - {fileID: 1532087875008750}
-  PlayerIndex: 2
+  PlayerIndex: 1
 --- !u!114 &114773387377649090
 MonoBehaviour:
   m_ObjectHideFlags: 1

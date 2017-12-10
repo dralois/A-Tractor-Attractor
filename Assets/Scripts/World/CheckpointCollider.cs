@@ -18,9 +18,9 @@ public class CheckpointCollider : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag == "Traktor")
+        if (other.tag == "TraktorBoundingBox")
         {
-            var vehicle = other.GetComponent<VehicleScript>();
+            var vehicle = other.GetComponentInParent<VehicleScript>();
             if (vehicle.playerIndex == parent.PlayerIndex)
             {
                 if (vehicle.Dead)
@@ -36,9 +36,9 @@ public class CheckpointCollider : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Traktor")
+        if (other.tag == "TraktorBoundingBox")
         {
-            var vehicle = other.GetComponent<VehicleScript>();
+            var vehicle = other.GetComponentInParent<VehicleScript>();
             if (vehicle.playerIndex == parent.PlayerIndex)
             {
                 if (Vector3.Dot(this.transform.right, this.transform.position - other.transform.position) > 0)
