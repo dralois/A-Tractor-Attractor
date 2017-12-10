@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65491957252879010}
   - component: {fileID: 23898969952871470}
   - component: {fileID: 114125022324617824}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FinishLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1310209633445148}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6.371776, y: -4.6, z: -6.4323425}
-  m_LocalScale: {x: 20, y: 0.01, z: 1}
+  m_LocalPosition: {x: -6.4, y: -3.9, z: -59.01}
+  m_LocalScale: {x: 24.436033, y: 0.01, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,7 +94,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1000, z: 1}
+  m_Size: {x: 2, y: 1000, z: 0.105}
   m_Center: {x: 0, y: 400, z: 0}
 --- !u!114 &114125022324617824
 MonoBehaviour:
@@ -113,3 +113,5 @@ MonoBehaviour:
   PlayerTwoName: blue
   Winner: {fileID: 0}
   WinSound: {fileID: 8300000, guid: fd5ad5358c4c2574897117b79cf16780, type: 3}
+  p1TurnGui: {fileID: 0}
+  p2TurnGui: {fileID: 0}
